@@ -1,4 +1,8 @@
 #ifndef TEXTSIM_INTERMEDIATE_X32_HPP
 #define TEXTSIM_INTERMEDIATE_X32_HPP
 
+namespace textsim{
+
+}
+
 #endif //TEXTSIM_INTERMEDIATE_X32_HPP

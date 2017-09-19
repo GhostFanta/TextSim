@@ -1,4 +1,8 @@
 #ifndef TEXTSIM_INTERMEDIATE_X8_HPP
 #define TEXTSIM_INTERMEDIATE_X8_HPP
 
+namespace textsim{
+
+}
+
 #endif //TEXTSIM_INTERMEDIATE_X8_HPP

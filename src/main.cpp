@@ -2,6 +2,10 @@
 #include "process.hpp"
 #include "libtest.hpp"
 int main() {
-  std::cout << "Hello, World!" << std::endl;
+  libtest::cmph::test_cmph();
+
+
+
+
   return 0;
 }
