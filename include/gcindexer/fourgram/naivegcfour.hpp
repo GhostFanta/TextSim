@@ -1,4 +1,7 @@
 #ifndef TEXTSIM_NAIVEGCFOUR_HPP
 #define TEXTSIM_NAIVEGCFOUR_HPP
 
+namespace textsim {
+
+};
 #endif //TEXTSIM_NAIVEGCFOUR_HPP

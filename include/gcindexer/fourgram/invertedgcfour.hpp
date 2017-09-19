@@ -1,4 +1,7 @@
 #ifndef TEXTSIM_INVERTEDGCFOUR_HPP
 #define TEXTSIM_INVERTEDGCFOUR_HPP
 
+namespace textsim {
+
+};
 #endif //TEXTSIM_INVERTEDGCFOUR_HPP

@@ -4,9 +4,7 @@
 #include <cstdint>
 
 namespace textsim {
-
 class GIIndexer {
-
  public:
 
   // The identifier for non-existing unigram/bigram string.
@@ -18,6 +16,5 @@ class GIIndexer {
   // Get the unique identifier of the given bigram.
   virtual unsigned int get_bigram_id(std::string bigram) = 0;
 };
-
 }  // namespace phsim
 #endif //TEXTSIM_GIINDEXER_HPP
