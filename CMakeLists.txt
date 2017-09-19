@@ -22,6 +22,7 @@ set_target_properties(libcmph PROPERTIES
         IMPORTED_LOCATION ${CMPHLIB})
 
 include_directories(${CMPHINCLUDE})
+include_directories(${FASTPFORINCLUDE})
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_link_libraries(${PROJECT_NAME} ${CMPHLIB})

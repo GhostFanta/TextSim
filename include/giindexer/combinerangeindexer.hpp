@@ -2,6 +2,7 @@
 #define TEXTSIM_COMBINERANGEINDEXER_HPP
 
 #include "common.hpp"
+#include "tool.hpp"
 
 namespace textsim {
 class CombineRangeIndexer : public GIIndexer {
@@ -11,11 +12,10 @@ class CombineRangeIndexer : public GIIndexer {
   const static unsigned int IDWIDTH = 23;
 
  private:
+  std::string uniarray[textsim::common::UNISIZE];
 
-  std::string uniarray[phsim::common::UNISIZE];
-
-  std::bitset<CombineRangeIndexer::IDWIDTH * 2> BIARRAY[phsim::common::BISIZE];
-  std::bitset<CombineRangeIndexer::IDWIDTH * 2> CONARRAY[phsim::common::CONSIZE];
+  std::bitset<textsim::common::IDWIDTH * 2> BIARRAY[textsim::common::BISIZE];
+  std::bitset<textsim::common::IDWIDTH * 2> CONARRAY[textsim::common::CONSIZE];
 
   cmph_t *hashuni;
   cmph_t *hashbi;
@@ -87,7 +87,7 @@ class CombineRangeIndexer : public GIIndexer {
   void init(std::vector<std::string> unichunks) {
     std::vector<std::thread> threads;
     for (auto i : unichunks) {
-      threads.emplace_back(std::thread(CombineBitIndexer::initonechunk, i, this->hashuni, this->uniarray));
+      threads.emplace_back(std::thread(textsim::CombineRangeIndexer::initonechunk, i, this->hashuni, this->uniarray));
     }
     for (auto &i : threads) {
       i.join();
@@ -121,7 +121,7 @@ class CombineRangeIndexer : public GIIndexer {
       std::string unigram2;
       ++index;
 
-      phsim::tool::split_string_into_unigram1_unigram2(current, unigram1, unigram2);
+      textsim::tool::split_string_into_unigram1_unigram2(current, unigram1, unigram2);
       std::cout << "unigram1:\t" << unigram1 << "\tunigram2:\t" << unigram2 << std::endl;
 
       uint32_t id1;
@@ -148,7 +148,7 @@ class CombineRangeIndexer : public GIIndexer {
       std::cout << "unigram1:\t" << unigram1 << "\tid:\t" << id1 << "\tunigram2:\t" << unigram2 << "\tid:\t" << id2
                 << std::endl;
 
-      auto digitnewkey = std::numeric_limits<uint_fast32_t>::max() & ((id1 << CombineBitIndexer::IDWIDTH) | (id2));
+      auto digitnewkey = std::numeric_limits<uint32_t>::max() & ((id1 << textsim::common::IDWIDTH) | (id2));
       auto newkey = std::to_string(digitnewkey);
       const char *bikey = newkey.c_str();
       unsigned int biindex = cmph_search(this->hashbi, bikey, (cmph_uint32) strlen(bikey));
@@ -183,7 +183,7 @@ class CombineRangeIndexer : public GIIndexer {
       std::string unigram1;
       std::string unigram2;
 
-      phsim::tool::split_string_into_unigram1_unigram2(current, unigram1, unigram2);
+      textsim::tool::split_string_into_unigram1_unigram2(current, unigram1, unigram2);
 
       uint_fast32_t id1 = (uint_fast32_t) this->get_unigram_id(unigram1);
       if (id1 == std::numeric_limits<uint32_t>::max()) {
@@ -195,7 +195,7 @@ class CombineRangeIndexer : public GIIndexer {
         continue;
       }
 
-      auto digitnewkey = std::numeric_limits<uint_fast32_t>::max() & ((id1 << CombineBitIndexer::IDWIDTH) | (id2));
+      auto digitnewkey = std::numeric_limits<uint32_t>::max() & ((id1 << textsim::common::IDWIDTH) | (id2));
       auto newkey = std::to_string(digitnewkey);
       const char *conkey = newkey.c_str();
       unsigned int conindex = cmph_search(this->hashcon, conkey, (cmph_uint32) strlen(conkey));
@@ -221,19 +221,19 @@ class CombineRangeIndexer : public GIIndexer {
       throw std::runtime_error("serialization not successful due to invalid path");
     }
 
-    for (size_t i = 0; i < phsim::common::UNISIZE; ++i) {
+    for (size_t i = 0; i < textsim::common::UNISIZE; ++i) {
       targetuni << this->uniarray[i] << std::endl;
     }
 
     std::cout << "uni serialization finished " << std::endl;
 
-    for (size_t i = 0; i < phsim::common::BISIZE; ++i) {
+    for (size_t i = 0; i < textsim::common::BISIZE; ++i) {
       targetbi << this->BIARRAY[i].to_ulong() << std::endl;
     }
 
     std::cout << "bi serialization finished " << std::endl;
 
-    for (size_t i = 0; i < phsim::common::CONSIZE; ++i) {
+    for (size_t i = 0; i < textsim::common::CONSIZE; ++i) {
       targetcon << this->CONARRAY[i].to_ulong() << std::endl;
     }
 
@@ -257,24 +257,24 @@ class CombineRangeIndexer : public GIIndexer {
       throw std::runtime_error("source path not valid");
     }
 
-    for (size_t i = 0; i < phsim::common::UNISIZE; ++i) {
+    for (size_t i = 0; i < textsim::common::UNISIZE; ++i) {
       std::string current;
       std::getline(sourceuni, current);
       this->uniarray[i] = current;
     }
 
-    for (size_t i = 0; i < phsim::common::BISIZE; ++i) {
+    for (size_t i = 0; i < textsim::common::BISIZE; ++i) {
       std::string current;
       std::getline(sourcebi, current);
       if (current.length() < 1) {
         continue;
       }
       auto fingerprintval = std::stoul(current);
-      std::bitset<CombineRangeIndexer::IDWIDTH * 2> fingerprint(fingerprintval);
+      std::bitset<textsim::common::IDWIDTH * 2> fingerprint(fingerprintval);
       this->BIARRAY[i] = fingerprint;
     }
 
-    for (size_t i = 0; i < phsim::common::CONSIZE; ++i) {
+    for (size_t i = 0; i < textsim::common::CONSIZE; ++i) {
       std::string current;
       std::getline(sourcecon, current);
       if (current.length() < 1) {
@@ -307,10 +307,10 @@ class CombineRangeIndexer : public GIIndexer {
   unsigned long bigramnumerical_generator(std::string input, uint32_t &id1, uint32_t &id2) {
     std::string unigram1;
     std::string unigram2;
-    phsim::tool::split_string_into_unigram1_unigram2(input, unigram1, unigram2);
+    textsim::tool::split_string_into_unigram1_unigram2(input, unigram1, unigram2);
 
-    id1 = (uint32_t) this->get_unigram_id(phsim::tool::trim(unigram1));
-    id2 = (uint32_t) this->get_unigram_id(phsim::tool::trim(unigram2));
+    id1 = (uint32_t) this->get_unigram_id(textsim::tool::trim(unigram1));
+    id2 = (uint32_t) this->get_unigram_id(textsim::tool::trim(unigram2));
 
     uint_fast32_t longid1 = id1;
     uint_fast32_t longid2 = id2;
@@ -325,24 +325,24 @@ class CombineRangeIndexer : public GIIndexer {
   virtual uint32_t get_bigram_id(std::string input) {
     std::string unigram1;
     std::string unigram2;
-    phsim::tool::split_string_into_unigram1_unigram2(input, unigram1, unigram2);
+    textsim::tool::split_string_into_unigram1_unigram2(input, unigram1, unigram2);
     uint32_t id1 = (uint32_t) this->get_unigram_id(unigram1);
     uint32_t id2 = (uint32_t) this->get_unigram_id(unigram2);
     if (id1 == std::numeric_limits<uint32_t>::max() || id2 == std::numeric_limits<uint32_t>::max()) {
       return std::numeric_limits<uint32_t>::max();
     } else {
-      auto bikeynum = std::numeric_limits<uint_fast32_t>::max() & ((id1 << CombineBitIndexer::IDWIDTH) | (id2));
+      auto bikeynum = std::numeric_limits<uint32_t>::max() & ((id1 << textsim::common::IDWIDTH) | (id2));
       std::string bikeystr = std::to_string(bikeynum);
       const char *bikey = bikeystr.c_str();
       unsigned int biid = cmph_search(hashbi, bikey, (cmph_uint32) strlen(bikey));
       unsigned long realindex = this->BIARRAY[biid].to_ulong();
       if (realindex == bikeynum) {
-        return biid + phsim::common::UNISIZE;
+        return biid + textsim::common::UNISIZE;
       } else {
         biid = cmph_search(this->hashcon, bikey, (cmph_uint32) strlen(bikey));
         realindex = this->CONARRAY[biid].to_ulong();
         if (realindex == bikeynum) {
-          return biid + phsim::common::UNISIZE + phsim::common::BISIZE;
+          return biid + textsim::common::UNISIZE + textsim::common::BISIZE;
         } else {
           return std::numeric_limits<uint32_t>::max();
         }

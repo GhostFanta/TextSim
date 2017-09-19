@@ -14,7 +14,7 @@
 #include <limits>
 #include <dirent.h>
 
-#include "phsim/common.hpp"
+#include "common.hpp"
 
 #if defined(_MSC_VER)
 /* Microsoft C/C++-compatible compiler */
@@ -49,7 +49,7 @@
 #   define ASSERT(condition, message) do { } while (false)
 #endif
 
-namespace phsim {
+namespace textsim{
 namespace tool {
 
 inline static std::vector<std::string> string_split(std::string s, const char delimeter) {

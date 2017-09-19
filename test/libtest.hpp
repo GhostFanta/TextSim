@@ -3,6 +3,9 @@
 
 #include "cmph.h"
 #include <string.h>
+#include "simple9.h"
+#include  "simple8b.h"
+#include "simple16.h"
 
 namespace libtest {
 namespace cmph {
@@ -46,15 +49,73 @@ void test_cmph() {
 namespace fastpfor {
 
 void test_simple8b_actual() {
+  std::vector<uint32_t> data = {
+      1, 225, 1, 235, 1, 345, 1, 644, 1, 221,
+      1, 225, 1, 235, 1, 345, 1, 644, 1, 221,
+      1, 225, 1, 235, 1, 345, 1, 644, 1, 221
+  };
+  FastPForLib::Simple8b<false> codec;
+  size_t originsize = data.size();
+  size_t intermediatesize = originsize;
+  std::vector<uint32_t> intermediate;
+  intermediate.resize(intermediatesize);
+  std::vector<uint32_t> recoverdata;
+  recoverdata.resize(originsize);
 
+  codec.encodeArray(data.data(), data.size(), intermediate.data(), intermediatesize);
+  codec.decodeArray(intermediate.data(), intermediate.size(), recoverdata.data(), originsize);
+  for (size_t i = 0; i < data.size(); i++) {
+    std::cout << "data[" << i << "]\t" << data[i] << "\t";
+    std::cout << "recoverdata[" << i << "]\t" << recoverdata[i] << std::endl;
+    assert(recoverdata[i] == data[i]);
+  }
 }
 
 void test_simple16_actual() {
+  std::vector<uint32_t> data = {
+      1, 225, 1, 235, 1, 345, 1, 644, 1, 221,
+      1, 225, 1, 235, 1, 345, 1, 644, 1, 221,
+      1, 225, 1, 235, 1, 345, 1, 644, 1, 221
+  };
+  FastPForLib::Simple16<false> codec;
+  size_t originsize = data.size();
+  size_t intermediatesize = originsize;
+  std::vector<uint32_t> intermediate;
+  intermediate.resize(intermediatesize);
+  uint32_t *intermediatep = &intermediate[0];
+  std::vector<uint32_t> recoverdata;
+  recoverdata.resize(originsize);
 
+  codec.encodeArray(&data[0], data.size(), intermediatep, intermediatesize);
+  codec.decodeArray(intermediatep, intermediate.size(), &recoverdata[0], originsize);
+  for (size_t i = 0; i < data.size(); i++) {
+    std::cout << "data[" << i << "]\t" << data[i] << "\t";
+    std::cout << "recoverdata[" << i << "]\t" << recoverdata[i] << std::endl;
+    assert(recoverdata[i] == data[i]);
+  }
 }
 
 void test_simple9_actual() {
+  std::vector<uint32_t> data = {
+      1, 225, 1, 235, 1, 345, 1, 644, 1, 221,
+      1, 225, 1, 235, 1, 345, 1, 644, 1, 221,
+      1, 225, 1, 235, 1, 345, 1, 644, 1, 221
+  };
+  FastPForLib::Simple9<false> codec;
+  size_t originsize = data.size();
+  size_t intermediatesize = originsize;
+  std::vector<uint32_t> intermediate;
+  intermediate.resize(intermediatesize);
+  std::vector<uint32_t> recoverdata;
+  recoverdata.resize(originsize);
 
+  codec.encodeArray(data.data(), data.size(), intermediate.data(), intermediatesize);
+  codec.decodeArray(intermediate.data(), intermediate.size(), recoverdata.data(), originsize);
+  for (size_t i = 0; i < data.size(); i++) {
+    std::cout << "data[" << i << "]\t" << data[i] << "\t";
+    std::cout << "recoverdata[" << i << "]\t" << recoverdata[i] << std::endl;
+    assert(recoverdata[i] == data[i]);
+  }
 };
 
 void test_variant_byte_actual() {
