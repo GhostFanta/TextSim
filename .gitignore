@@ -1,0 +1,9 @@
+.idea/
+.gitignore
+CMakeCache.txt
+CMakeFiles/
+Makefile
+TextSim
+TextSim.cbp
+cmake-build-debug/
+cmake_install.cmake

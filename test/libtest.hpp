@@ -3,8 +3,9 @@
 
 #include "cmph.h"
 #include <string.h>
+
 #include "simple9.h"
-#include  "simple8b.h"
+#include "simple8b.h"
 #include "simple16.h"
 
 namespace libtest {

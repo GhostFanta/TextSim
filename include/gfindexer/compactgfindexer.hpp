@@ -13,94 +13,67 @@ namespace textsim {
 class CompressedOptimizedGFIndexer: public GFindexer{
  public:
   //FLAGWIDTH: Depend on the size of Unique freq value
-  const static size_t FRONTIERBIT = 19;
   const static size_t FRONTIERVAL = pow(2, 18);
   const static size_t FREQSIZE = 233112;
   const static size_t FREQMAXWIDTH = 38;
 
-  const static unsigned long FLAGNUM = phsim::common::UNISIZE + phsim::common::BISIZE;
+  const static unsigned long FLAGNUM = textsim::common::UNISIZE + textsim::common::BISIZE;
 
   const static unsigned long
-      FLAGCAPACITY = CompressedOptimizedGFIndexer::FLAGNUM * CompressedOptimizedGFIndexer::FRONTIERBIT;
+      FLAGCAPACITY = CompressedOptimizedGFIndexer::FLAGNUM * textsim::common::FRONTIERBIT;
   const static unsigned long
-      FREQCAPACITY = CompressedOptimizedGFIndexer::FREQSIZE * CompressedOptimizedGFIndexer::FREQMAXWIDTH;
+      FREQCAPACITY = CompressedOptimizedGFIndexer::FREQSIZE * textsim::common::FREQMAXWIDTH;
 
 
   // Value Rank
-  std::bitset<phsim::CompressedOptimizedGFIndexer::FLAGCAPACITY> *flagarray;
-  std::bitset<phsim::CompressedOptimizedGFIndexer::FREQCAPACITY> *freqarray;
+  std::bitset<textsim::CompressedOptimizedGFIndexer::FLAGCAPACITY> *flagarray;
+  std::bitset<textsim::CompressedOptimizedGFIndexer::FREQCAPACITY> *freqarray;
   // Indexer
-  phsim::Indexer *gramindexer;
+  textsim::GIIndexer *gramindexer;
   // Freq val temp hash
   std::unordered_map<uint64_t, uint32_t> tempfreqhash;
   size_t freqoffset;
 
 
  public:
-  // index represents logical index similar to C++ arrays.
-//  static signed int flagarray_get_range(std::bitset<phsim::CompressedOptimizedGFIndexer::FLAGCAPACITY> *input,
-//                                        size_t index) {
-//    assert(index <= CompressedOptimizedGFIndexer::FLAGCAPACITY - CompressedOptimizedGFIndexer::FRONTIERBIT);
-//    std::bitset<CompressedOptimizedGFIndexer::FLAGCAPACITY>
-//        *temp = new std::bitset<phsim::CompressedOptimizedGFIndexer::FLAGCAPACITY>(*input);
-//    (*temp) <<= ((CompressedOptimizedGFIndexer::FLAGNUM - index - 1) * CompressedOptimizedGFIndexer::FRONTIERBIT);
-//    (*temp) >>= (CompressedOptimizedGFIndexer::FLAGCAPACITY - CompressedOptimizedGFIndexer::FRONTIERBIT);
-//    auto val = temp->to_ulong();
-//    std::bitset<phsim::CompressedOptimizedGFIndexer::FRONTIERBIT> tempval(val);
-//    if (tempval[phsim::CompressedOptimizedGFIndexer::FRONTIERBIT - 1] == 1) {
-//      tempval[phsim::CompressedOptimizedGFIndexer::FRONTIERBIT - 1] = 0;
-//      return (-(int) tempval.to_ulong());
-//    } else {
-//      return ((int) val);
-//    }
-//  };
 
-  static signed int flagarray_get_range(std::bitset<phsim::CompressedOptimizedGFIndexer::FLAGCAPACITY> *input,
+  static signed int flagarray_get_range(std::bitset<textsim::CompressedOptimizedGFIndexer::FLAGCAPACITY> *input,
                                         size_t index) {
     assert(index < CompressedOptimizedGFIndexer::FLAGNUM);
-    std::bitset<phsim::CompressedOptimizedGFIndexer::FRONTIERBIT> temp;
-    size_t bitcap = phsim::CompressedOptimizedGFIndexer::FRONTIERBIT;
+    std::bitset<textsim::common::FRONTIERBIT> temp;
+    size_t bitcap = textsim::common::FRONTIERBIT;
     while (bitcap > 0) {
-      temp.set(bitcap - 1, (*input)[index * CompressedOptimizedGFIndexer::FRONTIERBIT + bitcap - 1]);
+      temp.set(bitcap - 1, (*input)[index * textsim::common::FRONTIERBIT + bitcap - 1]);
       --bitcap;
     }
-    if (temp[phsim::CompressedOptimizedGFIndexer::FRONTIERBIT - 1] == 1) {
-      temp[phsim::CompressedOptimizedGFIndexer::FRONTIERBIT - 1] = 0;
+    if (temp[textsim::common::FRONTIERBIT - 1] == 1) {
+      temp[textsim::common::FRONTIERBIT - 1] = 0;
       return (-(int) temp.to_ulong());
     } else {
       return ((int) temp.to_ulong());
     }
   };
 
-  static void flagarray_set_range(std::bitset<phsim::CompressedOptimizedGFIndexer::FLAGCAPACITY> *flagarray,
+  static void flagarray_set_range(std::bitset<textsim::CompressedOptimizedGFIndexer::FLAGCAPACITY> *flagarray,
                                   size_t index, uint32_t val, bool isoffset) {
     assert(index < CompressedOptimizedGFIndexer::FLAGNUM);
     size_t blockindex = 0;
     while (val > 0) {
-      flagarray->set(index * phsim::CompressedOptimizedGFIndexer::FRONTIERBIT + blockindex, val & 1UL);
+      flagarray->set(index * textsim::common::FRONTIERBIT + blockindex, val & 1UL);
       ++blockindex;
       val >>= 1;
     }
     if (isoffset) {
-      flagarray->set((index + 1) * CompressedOptimizedGFIndexer::FRONTIERBIT - 1, 1);
+      flagarray->set((index + 1) * textsim::common::FRONTIERBIT - 1, 1);
     }
   };
 
-//  static unsigned long freqarray_get_range(std::bitset<phsim::CompressedOptimizedGFIndexer::FREQCAPACITY> *input,
-//                                           size_t index) {
-//    assert(index <= CompressedOptimizedGFIndexer::FREQSIZE);
-//    std::bitset<CompressedOptimizedGFIndexer::FREQCAPACITY>
-//        *temp = new std::bitset<phsim::CompressedOptimizedGFIndexer::FREQCAPACITY>(*input);
-//    *(temp) <<= ((CompressedOptimizedGFIndexer::FREQSIZE - index - 1) * CompressedOptimizedGFIndexer::FREQMAXWIDTH);
-//    *(temp) >>= ((CompressedOptimizedGFIndexer::FREQCAPACITY - CompressedOptimizedGFIndexer::FREQMAXWIDTH));
-//    return temp->to_ulong();
-//  };
 
-  static unsigned long freqarray_get_range(std::bitset<phsim::CompressedOptimizedGFIndexer::FREQCAPACITY> *input,
+  static unsigned long freqarray_get_range(std::bitset<textsim::CompressedOptimizedGFIndexer::FREQCAPACITY> *input,
                                            size_t index) {
     assert(index <= CompressedOptimizedGFIndexer::FREQSIZE);
-    std::bitset<phsim::CompressedOptimizedGFIndexer::FREQMAXWIDTH> temp;
-    size_t bitcap = phsim::CompressedOptimizedGFIndexer::FREQMAXWIDTH;
+    std::bitset<textsim::CompressedOptimizedGFIndexer::FREQMAXWIDTH> temp;
+    size_t bitcap = textsim::CompressedOptimizedGFIndexer::FREQMAXWIDTH;
     while (bitcap > 0) {
       temp.set(bitcap - 1, (*input)[index * CompressedOptimizedGFIndexer::FREQMAXWIDTH + bitcap - 1]);
       --bitcap;
@@ -108,13 +81,13 @@ class CompressedOptimizedGFIndexer: public GFindexer{
     return temp.to_ulong();
   };
 
-  static void freqarray_set_range(std::bitset<phsim::CompressedOptimizedGFIndexer::FREQCAPACITY> *freqarray,
+  static void freqarray_set_range(std::bitset<textsim::CompressedOptimizedGFIndexer::FREQCAPACITY> *freqarray,
                                   size_t index,
                                   uint64_t val) {
     assert(index <= CompressedOptimizedGFIndexer::FREQCAPACITY - CompressedOptimizedGFIndexer::FREQMAXWIDTH);
     size_t blockindex = 0;
     while (val > 0) {
-      freqarray->set(index * phsim::CompressedOptimizedGFIndexer::FREQMAXWIDTH + blockindex, val & 1UL);
+      freqarray->set(index * textsim::CompressedOptimizedGFIndexer::FREQMAXWIDTH + blockindex, val & 1UL);
       ++blockindex;
       val >>= 1;
     }
@@ -122,11 +95,11 @@ class CompressedOptimizedGFIndexer: public GFindexer{
 
  public:
 
-  CompressedOptimizedGFIndexer(phsim::Indexer *gramindexer) {
+  CompressedOptimizedGFIndexer(textsim::GIIndexer *gramindexer) {
     this->gramindexer = gramindexer;
     this->freqoffset = 0;
-    this->flagarray = new std::bitset<phsim::CompressedOptimizedGFIndexer::FLAGCAPACITY>();
-    this->freqarray = new std::bitset<phsim::CompressedOptimizedGFIndexer::FREQCAPACITY>();
+    this->flagarray = new std::bitset<textsim::CompressedOptimizedGFIndexer::FLAGCAPACITY>();
+    this->freqarray = new std::bitset<textsim::CompressedOptimizedGFIndexer::FREQCAPACITY>();
   };
 
   void inituni(std::string unipath) {
@@ -143,12 +116,12 @@ class CompressedOptimizedGFIndexer: public GFindexer{
       }
       std::string unigram;
       unsigned long freq;
-      phsim::tool::split_string_into_gram_freq(current, unigram, freq);
+      textsim::tool::split_string_into_gram_freq(current, unigram, freq);
       id_t id = this->gramindexer->get_unigram_id(unigram);
-      if(id >= phsim::CompressedOptimizedGFIndexer::FLAGNUM){
+      if(id >= textsim::CompressedOptimizedGFIndexer::FLAGNUM){
         continue;
       }
-      if (freq > phsim::CompressedOptimizedGFIndexer::FRONTIERVAL) {
+      if (freq > textsim::CompressedOptimizedGFIndexer::FRONTIERVAL) {
         if (this->tempfreqhash.find(freq) != this->tempfreqhash.end()) {
           CompressedOptimizedGFIndexer::flagarray_set_range(this->flagarray, id, this->tempfreqhash[freq], 1);
         } else {
@@ -177,12 +150,12 @@ class CompressedOptimizedGFIndexer: public GFindexer{
       }
       std::string bigram;
       unsigned long freq;
-      phsim::tool::split_string_into_gram_freq(current, bigram, freq);
+      textsim::tool::split_string_into_gram_freq(current, bigram, freq);
       id_t id = this->gramindexer->get_bigram_id(bigram);
-      if(id >= phsim::CompressedOptimizedGFIndexer::FLAGNUM){
+      if(id >= textsim::CompressedOptimizedGFIndexer::FLAGNUM){
         continue;
       }
-      if (freq > phsim::CompressedOptimizedGFIndexer::FRONTIERVAL) {
+      if (freq > textsim::CompressedOptimizedGFIndexer::FRONTIERVAL) {
         if (this->tempfreqhash.find(freq) != this->tempfreqhash.end()) {
           CompressedOptimizedGFIndexer::flagarray_set_range(this->flagarray, id, this->tempfreqhash[freq], 1);
         } else {
@@ -205,7 +178,7 @@ class CompressedOptimizedGFIndexer: public GFindexer{
 
   unsigned long get_freq(std::string query) {
     id_t id;
-    if (phsim::tool::gram_length(query)) {
+    if (textsim::tool::gram_length(query)) {
       id = this->gramindexer->get_bigram_id(query);
     } else {
       id = this->gramindexer->get_unigram_id(query);

@@ -14,7 +14,7 @@ namespace textsim {
 class CompressedmixGFIndexer : public GFindexer {
 
  public:
-  textsim::Indexer *gramindexer;
+  textsim::GIIndexer *gramindexer;
 
   unsigned long frontier;
   unsigned long escapeoffset = 0;
@@ -24,10 +24,10 @@ class CompressedmixGFIndexer : public GFindexer {
 
  public:
   // Constructors and interfaces
-  CompressedmixGFIndexer(textsim::Indexer *gramindexer) {
+  CompressedmixGFIndexer(textsim::GIIndexer *gramindexer) {
     this->gramindexer = gramindexer;
     this->escapeoffset = 0;
-    this->frontier = pow(2, CompressedmixGFIndexer::SMALLVALUEWIDTH); //Freq larger than this one will be large freq;
+    this->frontier = pow(2, textsim::common::FRONTIERBIT); //Freq larger than this one will be large freq;
   }
 
   void inituni(std::vector<std::string> unigram_freq_chunks) {
@@ -58,7 +58,7 @@ class CompressedmixGFIndexer : public GFindexer {
         textsim::tool::split_string_into_gram_freq(current, gramcontent, freq);
         auto t3 = std::chrono::high_resolution_clock::now();
         auto flagoffset = this->gramindexer->get_unigram_id(gramcontent);
-        if (flagoffset > CompressedmixGFIndexer::UNISZIE + CompressedmixGFIndexer::BISIZE) {
+        if (flagoffset > textsim::common::UNISIZE + textsim::common::BISIZE) {
           continue;
         }
         auto t4 = std::chrono::high_resolution_clock::now();
@@ -125,7 +125,7 @@ class CompressedmixGFIndexer : public GFindexer {
         textsim::tool::split_string_into_gram_freq(current, gramcontent, freq);
         auto t3 = std::chrono::high_resolution_clock::now();
         auto flagoffset = this->gramindexer->get_bigram_id(gramcontent);
-        if (flagoffset > CompressedmixGFIndexer::UNISZIE + CompressedmixGFIndexer::BISIZE) {
+        if (flagoffset > textsim::common::UNISIZE + textsim::common::BISIZE) {
           continue;
         }
         auto t4 = std::chrono::high_resolution_clock::now();
@@ -173,7 +173,7 @@ class CompressedmixGFIndexer : public GFindexer {
     } else {
       offset = this->gramindexer->get_unigram_id(input);
     }
-    if (offset > CompressedmixGFIndexer::UNISZIE + CompressedmixGFIndexer::BISIZE) {
+    if (offset > textsim::common::UNISIZE + textsim::common::BISIZE) {
       return 0;
     }
     auto t1 = std::chrono::high_resolution_clock::now();
