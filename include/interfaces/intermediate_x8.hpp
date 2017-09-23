@@ -14,7 +14,6 @@ class intermediate_x8{
                           std::vector <uint32_t> &output,
                           uint64_t &intermediatesize) = 0;
 };
-
-}
+};
 
 #endif //TEXTSIM_INTERMEDIATE_X8_HPP

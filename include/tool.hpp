@@ -50,6 +50,70 @@
 #endif
 
 namespace textsim{
+
+namespace logger{
+static void showdata(const __uint32_t *data) {
+  for (int i = 0; i < 4; i++) {
+    printf("\t%d\t", data[i]);
+  }
+  std::cout << std::endl;
+}
+
+static void showdata(__m128i data) {
+  const uint32_t *temp = (uint32_t *) malloc(sizeof(uint32_t) * 4);
+  _mm_storeu_si128((__m128i *) temp, data);
+  showdata(temp);
+}
+
+static void showdata(std::string message, __m128i data) {
+  std::cout << message << ": \t";
+  showdata(data);
+}
+
+template <class T>
+static void showdata(std::string message, std::vector<T> data){
+  std::cout<<message<<std::endl;
+  showdata(data);
+}
+
+template <class T>
+static void showdata(std::vector<T> data) {
+  for (auto i : data) {
+    std::cout << i << "\t";
+  }
+  std::cout << std::endl;
+}
+
+static void show_byte_binary(uint8_t input) {
+  std::bitset<8> binary(input);
+  std::cout << binary ;
+}
+
+static void show_uint32t_binary(uint32_t input){
+  std::bitset<32> binary(input);
+  std::cout<<binary<<std::endl;
+}
+
+static void show_uint32t_binary(uint32_t input,std::string message){
+  std::cout<<message;
+  show_uint32t_binary(input);
+}
+
+static void show_uint64t_binary(uint64_t input){
+  std::bitset<64> binary(input);
+  std::cout<<binary<<std::endl;
+}
+
+static void show_uint64t_binary(uint64_t input, std::string message){
+  std::cout<<message;
+  show_uint64t_binary(input);
+}
+
+static void show_byte_binary(std::string message, uint8_t input) {
+  std::cout << message << "\t";
+  show_byte_binary(input);
+}
+}
 namespace tool {
 
 inline static std::vector<std::string> string_split(std::string s, const char delimeter) {

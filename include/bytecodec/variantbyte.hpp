@@ -1,5 +1,6 @@
 #ifndef TEXTSIM_VARIANTBYTE_HPP
 #define TEXTSIM_VARIANTBYTE_HPP
+#include "bytealignedcommon.hpp"
 #include "interfaces/intermediate_x8.hpp"
 #include "common.hpp"
 #include "tool.hpp"
@@ -7,7 +8,7 @@
 namespace textsim{
 // Use 0 to represent the end of available bytes.
 
-    class vbyte: public intermediate_x8{
+    class vbyte: public bytealignedcommon, public intermediate_x8{
     public:
 
         template<uint32_t offset>
@@ -27,6 +28,8 @@ namespace textsim{
         }
 
     public:
+      vbyte(){};
+
         void encode_x8(std::vector<uint32_t> &input,size_t &originalsize,std::vector<uint8_t> &output,size_t &intermediatesize) {
             output.resize(input.size() * 4);
             size_t index_byte = 0;

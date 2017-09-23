@@ -1,10 +1,12 @@
 #ifndef TEXTSIM_VARIANTGB_HPP
 #define TEXTSIM_VARIANTGB_HPP
+
+#include "bytealignedcommon.hpp"
 #include "common.hpp"
 #include "interfaces/intermediate_x8.hpp"
 
 namespace textsim{
-    class variantgb: public intermediate_x8{
+    class variantgb: public bytealignedcommon, public intermediate_x8{
     public:
         template<uint32_t numofbytes>
         inline void setdescriptor(uint8_t &descriptor, size_t offset) {
@@ -35,7 +37,7 @@ namespace textsim{
         }
 
     public:
-        void encode_x8(std::vector<uint32_t> &input, size_t &originalsize,std::vector<uint8_t> &output,size_t &intermediatesize) {
+        void encode_x8(std::vector<uint32_t> &input, size_t &beforesize,std::vector<uint8_t> &output,size_t &intermediatesize) {
             size_t index_byte = 0;
             size_t originalsize = input.size();
             output.resize(originalsize * 4 + originalsize / 4 + 1);

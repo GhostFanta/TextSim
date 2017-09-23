@@ -7,20 +7,34 @@
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
-      <configuration CONFIG_NAME="Debug" />
+      <configuration CONFIG_NAME="Debug" GENERATION_DIR="." />
     </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="abcf7343-b589-4958-acc1-be4007725379" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/TextSim.iml" afterPath="$PROJECT_DIR$/.idea/TextSim.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/include/bitcodec/bitalignedcommon.hpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/include/bitcodec/golombrice.hpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/include/bytecodec/bytealignedcommon.hpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/include/phrasesim/rakibsim.hpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/include/util/bit_vector.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/FastPFor" afterPath="$PROJECT_DIR$/lib/FastPFor" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/bitcodec/block.hpp" afterPath="$PROJECT_DIR$/include/bitcodec/block.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/bitcodec/eliasdelta.hpp" afterPath="$PROJECT_DIR$/include/bitcodec/eliasdelta.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/bitcodec/eliasgamma.hpp" afterPath="$PROJECT_DIR$/include/bitcodec/eliasgamma.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/bitcodec/eliasomega.hpp" afterPath="$PROJECT_DIR$/include/bitcodec/eliasomega.hpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/bytecodec/variantbyte.hpp" afterPath="$PROJECT_DIR$/include/bytecodec/variantbyte.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/bytecodec/variantg8cu.hpp" afterPath="$PROJECT_DIR$/include/bytecodec/variantg8cu.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/bytecodec/variantg8iu.hpp" afterPath="$PROJECT_DIR$/include/bytecodec/variantg8iu.hpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/bytecodec/variantgb.hpp" afterPath="$PROJECT_DIR$/include/bytecodec/variantgb.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/common.hpp" afterPath="$PROJECT_DIR$/include/common.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/gfindexer/alignedgfindexer.hpp" afterPath="$PROJECT_DIR$/include/gfindexer/alignedgfindexer.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/gfindexer/compactgfindexer.hpp" afterPath="$PROJECT_DIR$/include/gfindexer/compactgfindexer.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/gcindexer/trigram/invertedgctri.hpp" afterPath="$PROJECT_DIR$/include/gcindexer/trigram/invertedgctri.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/gcindexer/trigram/naivegctri.hpp" afterPath="$PROJECT_DIR$/include/gcindexer/trigram/naivegctri.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/interfaces/intermediate_x8.hpp" afterPath="$PROJECT_DIR$/include/interfaces/intermediate_x8.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/tool.hpp" afterPath="$PROJECT_DIR$/include/tool.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/wordcodec/simple8b.hpp" afterPath="$PROJECT_DIR$/include/wordcodec/simple8b.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/wordcodec/simple9.hpp" afterPath="$PROJECT_DIR$/include/wordcodec/simple9.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.cpp" afterPath="$PROJECT_DIR$/src/main.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/libtest.hpp" afterPath="$PROJECT_DIR$/test/libtest.hpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/process.hpp" afterPath="$PROJECT_DIR$/test/process.hpp" />
     </list>
@@ -28,6 +42,7 @@
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/CMakeFiles/" />
+    <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,116 +53,147 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+            <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/main.cpp">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="387">
+                    <caret line="23" column="38" lean-forward="false" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+                    <folding>
+                      <element signature="e#0#19#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+            <file leaf-file-name="libtest.hpp" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/test/libtest.hpp">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="169">
+                    <caret line="164" column="54" lean-forward="true" selection-start-line="164" selection-start-column="54" selection-end-line="164" selection-end-column="54" />
+                    <folding>
+                      <element signature="e#721#1867#0" expanded="false" />
+                      <element signature="e#2475#3131#0" expanded="false" />
+                      <element signature="e#3134#4072#0" expanded="false" />
+                      <element signature="e#5081#6022#0" expanded="false" />
+                      <element signature="e#6025#7004#0" expanded="false" />
+                      <element signature="e#7006#7943#0" expanded="false" />
+                      <element signature="e#7946#9122#0" expanded="false" />
+                      <element signature="e#9240#10444#0" expanded="false" />
+                      <element signature="e#10471#11357#0" expanded="false" />
+                      <element signature="e#11360#12203#0" expanded="false" />
+                      <element signature="e#12205#12918#0" expanded="false" />
+                      <element signature="e#12921#14171#0" expanded="false" />
+                      <element signature="e#14173#14949#0" expanded="false" />
+                      <element signature="e#14951#16122#0" expanded="false" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="TextSim" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="process.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/process.hpp">
+      <file leaf-file-name="bit_vector.hpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/include/util/bit_vector.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+            <state relative-caret-position="327">
+              <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding>
-                <element signature="e#1437#2045#0" expanded="false" />
-                <element signature="e#2048#5175#0" expanded="false" />
-                <element signature="e#5178#8823#0" expanded="false" />
-                <element signature="e#8826#13362#0" expanded="false" />
+                <element signature="e#63#84#0" expanded="true" />
+                <element signature="e#390#803#0" expanded="false" />
+                <element signature="e#807#920#0" expanded="false" />
+                <element signature="e#925#1771#0" expanded="false" />
+                <element signature="e#1775#2192#0" expanded="false" />
+                <element signature="e#2267#2285#0" expanded="true" />
+                <element signature="e#2258#2716#0" expanded="false" />
+                <element signature="e#2720#3561#0" expanded="false" />
+                <element signature="e#3576#3703#0" expanded="false" />
+                <element signature="e#3707#3895#0" expanded="false" />
+                <element signature="e#3908#3963#0" expanded="false" />
+                <element signature="e#4099#4114#0" expanded="true" />
+                <element signature="e#4450#4560#0" expanded="false" />
+                <element signature="e#4564#4695#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="variantbyte.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/include/bytecodec/variantbyte.hpp">
+      <file leaf-file-name="giindexer.hpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/interfaces/giindexer.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-              <folding>
-                <element signature="e#64#105#0" expanded="true" />
-                <element signature="e#289#306#0" expanded="true" />
-                <element signature="e#522#539#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="72">
+              <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="combinerangeindexer.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/include/giindexer/combinerangeindexer.hpp">
+      <file leaf-file-name="gfindexer.hpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/interfaces/gfindexer.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-749">
-              <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-              <folding>
-                <element signature="e#81#102#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="216">
+              <caret line="12" column="10" lean-forward="false" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="naivegfindexer.hpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/include/gfindexer/naivegfindexer.hpp">
+      <file leaf-file-name="gcindexer.hpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/interfaces/gcindexer.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-              <folding>
-                <element signature="e#70#87#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="compactgfindexer.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/include/gfindexer/compactgfindexer.hpp">
+      <file leaf-file-name="phrasesim.hpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/interfaces/phrasesim.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
-              <caret line="197" column="0" lean-forward="false" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
-              <folding>
-                <element signature="e#74#91#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/include/common.hpp">
+      <file leaf-file-name="intermediate_x64.hpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/interfaces/intermediate_x64.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
               <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding>
-                <element signature="e#55#73#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="alignedgfindexer.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/include/gfindexer/alignedgfindexer.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="175" column="41" lean-forward="false" selection-start-line="175" selection-start-column="41" selection-end-line="175" selection-end-column="41" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="naivegctri.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/include/gcindexer/trigram/naivegctri.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="naivegiindexer.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/include/giindexer/naivegiindexer.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-              <folding>
-                <element signature="e#70#87#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -158,48 +204,63 @@
     <findStrings>
       <find>test_naive</find>
       <find>FRONTIERBIT</find>
+      <find>FAST</find>
+      <find>_num_of_bits</find>
+      <find>_num_of_bit</find>
+      <find>data</find>
+      <find>cout</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/test/libtest.hpp" root0="SKIP_INSPECTION" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/include/bitcodec.hpp" />
-        <option value="$PROJECT_DIR$/include/bytecodec/variantg8cu.hpp" />
         <option value="$PROJECT_DIR$/include/interfaces/gcindexer.hpp" />
         <option value="$PROJECT_DIR$/include/interfaces/gfindexer.hpp" />
         <option value="$PROJECT_DIR$/include/wordcodec/simple16.hpp" />
-        <option value="$PROJECT_DIR$/include/wordcodec/simple9.hpp" />
-        <option value="$PROJECT_DIR$/include/wordcodec/simple8b.hpp" />
-        <option value="$PROJECT_DIR$/include/interfaces/intermediate_x8.hpp" />
         <option value="$PROJECT_DIR$/include/interfaces/intermediate_x32.hpp" />
         <option value="$PROJECT_DIR$/include/interfaces/intermediate_x64.hpp" />
-        <option value="$PROJECT_DIR$/include/bitcodec/block.hpp" />
-        <option value="$PROJECT_DIR$/include/bitcodec/eliasdelta.hpp" />
-        <option value="$PROJECT_DIR$/include/bitcodec/eliasgamma.hpp" />
-        <option value="$PROJECT_DIR$/include/bitcodec/eliasomega.hpp" />
-        <option value="$PROJECT_DIR$/include/gcindexer/trigram/naivegctri.hpp" />
-        <option value="$PROJECT_DIR$/include/gcindexer/trigram/invertedgctri.hpp" />
         <option value="$PROJECT_DIR$/include/gcindexer/fourgram/naivegcfour.hpp" />
         <option value="$PROJECT_DIR$/include/gcindexer/fourgram/invertedgcfour.hpp" />
         <option value="$PROJECT_DIR$/include/giindexer/naivegiindexer.hpp" />
         <option value="$PROJECT_DIR$/include/interfaces/giindexer.hpp" />
         <option value="$PROJECT_DIR$/include/interfaces/phrasesim.hpp" />
-        <option value="$PROJECT_DIR$/include/tool.hpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/include/giindexer/combinerangeindexer.hpp" />
-        <option value="$PROJECT_DIR$/src/main.cpp" />
         <option value="$PROJECT_DIR$/include/gfindexer/naivegfindexer.hpp" />
-        <option value="$PROJECT_DIR$/test/libtest.hpp" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/include/bytecodec/variantgb.hpp" />
-        <option value="$PROJECT_DIR$/include/bytecodec/variantbyte.hpp" />
-        <option value="$PROJECT_DIR$/test/process.hpp" />
-        <option value="$PROJECT_DIR$/include/common.hpp" />
         <option value="$PROJECT_DIR$/include/gfindexer/compactgfindexer.hpp" />
         <option value="$PROJECT_DIR$/include/gfindexer/alignedgfindexer.hpp" />
+        <option value="$PROJECT_DIR$/include/phrasesim/rakibsim.hpp" />
+        <option value="$PROJECT_DIR$/include/wordcodec/simple8b.hpp" />
+        <option value="$PROJECT_DIR$/include/bytecodec/bytealignedcommon.hpp" />
+        <option value="$PROJECT_DIR$/include/bytecodec/variantbyte.hpp" />
+        <option value="$PROJECT_DIR$/include/bytecodec/variantgb.hpp" />
+        <option value="$PROJECT_DIR$/test/process.hpp" />
+        <option value="$PROJECT_DIR$/include/common.hpp" />
+        <option value="$PROJECT_DIR$/include/bitcodec/block.hpp" />
+        <option value="$PROJECT_DIR$/include/bitcodec/bitalignedcommon.hpp" />
+        <option value="$PROJECT_DIR$/include/bitcodec/eliasgamma.hpp" />
+        <option value="$PROJECT_DIR$/include/wordcodec/simple9.hpp" />
+        <option value="$PROJECT_DIR$/include/bitcodec/eliasdelta.hpp" />
+        <option value="$PROJECT_DIR$/include/bitcodec/golombrice.hpp" />
+        <option value="$PROJECT_DIR$/include/bitcodec/eliasomega.hpp" />
+        <option value="$PROJECT_DIR$/include/interfaces/intermediate_x8.hpp" />
+        <option value="$PROJECT_DIR$/include/tool.hpp" />
+        <option value="$PROJECT_DIR$/include/bytecodec/variantg8iu.hpp" />
+        <option value="$PROJECT_DIR$/include/bytecodec/variantg8cu.hpp" />
+        <option value="$PROJECT_DIR$/include/gcindexer/trigram/invertedgctri.hpp" />
+        <option value="$PROJECT_DIR$/include/gcindexer/trigram/naivegctri.hpp" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/main.cpp" />
+        <option value="$PROJECT_DIR$/test/libtest.hpp" />
+        <option value="$PROJECT_DIR$/include/util/bit_vector.hpp" />
       </list>
     </option>
   </component>
@@ -209,7 +270,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="4">
+    <option name="x" value="960" />
     <option name="y" value="24" />
     <option name="width" value="960" />
     <option name="height" value="1056" />
@@ -245,62 +308,25 @@
               <item name="TextSim" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="TextSim" type="462c0819:PsiDirectoryNode" />
               <item name="include" type="462c0819:PsiDirectoryNode" />
-              <item name="bitcodec" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TextSim" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="TextSim" type="462c0819:PsiDirectoryNode" />
-              <item name="include" type="462c0819:PsiDirectoryNode" />
-              <item name="bytecodec" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TextSim" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="TextSim" type="462c0819:PsiDirectoryNode" />
-              <item name="include" type="462c0819:PsiDirectoryNode" />
-              <item name="gcindexer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TextSim" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="TextSim" type="462c0819:PsiDirectoryNode" />
-              <item name="include" type="462c0819:PsiDirectoryNode" />
-              <item name="gcindexer" type="462c0819:PsiDirectoryNode" />
-              <item name="fourgram" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TextSim" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="TextSim" type="462c0819:PsiDirectoryNode" />
-              <item name="include" type="462c0819:PsiDirectoryNode" />
-              <item name="gcindexer" type="462c0819:PsiDirectoryNode" />
-              <item name="trigram" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TextSim" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="TextSim" type="462c0819:PsiDirectoryNode" />
-              <item name="include" type="462c0819:PsiDirectoryNode" />
-              <item name="gfindexer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TextSim" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="TextSim" type="462c0819:PsiDirectoryNode" />
-              <item name="include" type="462c0819:PsiDirectoryNode" />
-              <item name="giindexer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TextSim" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="TextSim" type="462c0819:PsiDirectoryNode" />
-              <item name="include" type="462c0819:PsiDirectoryNode" />
               <item name="interfaces" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TextSim" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="TextSim" type="462c0819:PsiDirectoryNode" />
               <item name="include" type="462c0819:PsiDirectoryNode" />
-              <item name="wordcodec" type="462c0819:PsiDirectoryNode" />
+              <item name="phrasesim" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TextSim" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="TextSim" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TextSim" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="TextSim" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+              <item name="wordcodec" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -309,11 +335,11 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SIMDCustom" />
+    <property name="last_opened_file_path" value="$USER_HOME$/cgm/phsim/TextSim" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="$USER_HOME$/.nvm/versions/node/v8.5.0/bin/node" />
-    <property name="SearchEverywhereHistoryKey" value="pro&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/process.hpp&#10;process&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/process.hpp&#10;CMak&#9;FILE&#9;file:///home/zichu/Git/TextSim/CMakeLists.txt&#10;common.&#9;FILE&#9;file:///home/zeroline/Git/TextSim/include/common.hpp&#10;libtes&#9;FILE&#9;file:///home/zeroline/Git/TextSim/test/libtest.hpp&#10;main.cpp&#9;FILE&#9;file:///home/zeroline/Git/TextSim/src/main.cpp&#10;main&#9;FILE&#9;file:///home/zeroline/Git/TextSim/src/main.cpp&#10;CM&#9;FILE&#9;file:///home/zeroline/Git/TextSim/CMakeLists.txt&#10;tool.h&#9;FILE&#9;file:///home/zeroline/Git/TextSim/include/tool.hpp&#10;tool&#9;null&#9;null&#10;common&#9;FILE&#9;file:///home/zeroline/Git/TextSim/include/common.hpp&#10;comm&#9;ACTION&#9;CheckinProject&#10;giin&#9;FILE&#9;file:///home/zeroline/Git/TextSim/include/interfaces/giindexer.hpp&#10;cmake&#9;FILE&#9;file:///home/zeroline/Git/TextSim/CMakeLists.txt" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="SearchEverywhereHistoryKey" value="main.cpp&#9;FILE&#9;file:///home/zichu/Git/TextSim/src/main.cpp&#10;tool.h&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/tool.hpp&#10;common&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/common.hpp&#10;bitv&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/util/bit_vector.hpp&#10;bit&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/util/bit_vector.hpp&#10;tool.hp&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/tool.hpp&#10;toll&#9;null&#9;null&#10;libtest&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/libtest.hpp&#10;bitvector&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/util/bit_vector.hpp&#10;util/bi&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/util/bit_vector.hpp&#10;util.hpp&#9;FILE&#9;file:///usr/include/c++/6/ext/pb_ds/detail/type_utils.hpp&#10;util&#9;FILE&#9;file:///home/zichu/Git/TextSim/lib/FastPFor/headers/util.h&#10;lib&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/libtest.hpp&#10;bitve&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/util/bit_vector.hpp&#10;variantby&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/bytecodec/variantbyte.hpp&#10;libte&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/libtest.hpp&#10;libtes&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/libtest.hpp&#10;process&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/process.hpp&#10;main&#9;null&#9;null&#10;main.cp&#9;FILE&#9;file:///home/zichu/Git/TextSim/src/main.cpp&#10;ma&#9;FILE&#9;file:///home/zichu/Git/TextSim/CMakeLists.txt&#10;proc&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/process.hpp&#10;simple&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/wordcodec/simple9.hpp&#10;cmak&#9;FILE&#9;file:///home/zichu/Git/TextSim/CMakeLists.txt&#10;pro&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/process.hpp&#10;CMak&#9;FILE&#9;file:///home/zichu/Git/TextSim/CMakeLists.txt&#10;common.&#9;FILE&#9;file:///home/zeroline/Git/TextSim/include/common.hpp&#10;CM&#9;FILE&#9;file:///home/zeroline/Git/TextSim/CMakeLists.txt&#10;tool&#9;null&#9;null&#10;comm&#9;ACTION&#9;CheckinProject&#10;giin&#9;FILE&#9;file:///home/zeroline/Git/TextSim/include/interfaces/giindexer.hpp&#10;cmake&#9;FILE&#9;file:///home/zeroline/Git/TextSim/CMakeLists.txt" />
+    <property name="settings.editor.selected.configurable" value="com.maddyhome.idea.vim.ui.VimEmulationConfigurable" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/.gitignore" />
   </component>
   <component name="RunDashboard">
@@ -498,6 +524,12 @@
       <item index="1" class="java.lang.String" itemvalue="Application.Build All" />
     </list>
   </component>
+  <component name="SFStoredExecutionPersistentComponent">
+    <executions>
+      <execution name="Default" sourceToExecute="" />
+    </executions>
+    <lastSelectedExecutionName>Default</lastSelectedExecutionName>
+  </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
@@ -518,7 +550,23 @@
       <workItem from="1505932227128" duration="2865000" />
       <workItem from="1505938259631" duration="1621000" />
       <workItem from="1505945992288" duration="92000" />
-      <workItem from="1505946094786" duration="3243000" />
+      <workItem from="1505946094786" duration="5405000" />
+      <workItem from="1505957669435" duration="814000" />
+      <workItem from="1505958513326" duration="499000" />
+      <workItem from="1505959023332" duration="5177000" />
+      <workItem from="1505996808073" duration="2647000" />
+      <workItem from="1505999533068" duration="35000" />
+      <workItem from="1505999785331" duration="3204000" />
+      <workItem from="1506007283101" duration="12040000" />
+      <workItem from="1506029432521" duration="1333000" />
+      <workItem from="1506035415097" duration="28000" />
+      <workItem from="1506036118398" duration="7810000" />
+      <workItem from="1506083694312" duration="1909000" />
+      <workItem from="1506085925045" duration="3494000" />
+      <workItem from="1506094305074" duration="16622000" />
+      <workItem from="1506121006171" duration="5873000" />
+      <workItem from="1506171637653" duration="9892000" />
+      <workItem from="1506187272361" duration="9724000" />
     </task>
     <task id="LOCAL-00001" summary="init repo">
       <created>1505780269945</created>
@@ -555,34 +603,53 @@
       <option name="project" value="LOCAL" />
       <updated>1505842987357</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add test">
+      <created>1505949688371</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1505949688371</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25768000" />
+    <option name="totallyTimeSpent" value="109031000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="960" height="1056" extended-state="4" />
+    <frame x="960" y="24" width="960" height="1056" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2964989" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3539267" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901832" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45199567" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901832" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29773462" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2722513" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901832" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20678337" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901832" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.39940387" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1219" y="278" width="442" height="547" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" show_stripe_button="true" weight="0.39940387" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="989" y="537" width="846" height="487" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901832" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -607,145 +674,238 @@
     <MESSAGE value="change index to uint32t" />
     <MESSAGE value="add naive gi gf" />
     <MESSAGE value="add lib" />
-    <option name="LAST_COMMIT_MESSAGE" value="add lib" />
+    <MESSAGE value="add test" />
+    <option name="LAST_COMMIT_MESSAGE" value="add test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/test/libtest.hpp</url>
-          <line>112</line>
-          <option name="timeStamp" value="1" />
+          <line>351</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="4" />
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/include/tool.hpp">
+    <entry file="file:///usr/include/c++/6/bits/stl_vector.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6246">
-          <caret line="347" column="2" lean-forward="false" selection-start-line="347" selection-start-column="2" selection-end-line="347" selection-end-column="2" />
+        <state relative-caret-position="518">
+          <caret line="177" column="0" lean-forward="false" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/gfindexer/compactgfindexer.hpp">
+    <entry file="file://$PROJECT_DIR$/lib/FastPFor/headers/simple16.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#74#91#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/giindexer/naivegiindexer.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="48" column="27" lean-forward="false" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/giindexer/combinerangeindexer.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2268">
-          <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
-          <folding>
-            <element signature="e#81#102#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/gfindexer/naivegfindexer.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="24" column="51" lean-forward="false" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
-          <folding>
-            <element signature="e#70#87#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/common.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="16" lean-forward="false" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-          <folding>
-            <element signature="e#55#73#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="36" lean-forward="false" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/libtest.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding>
-            <element signature="e#199#1345#0" expanded="false" />
-            <element signature="e#1373#2249#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/bitcodec.hpp" />
-    <entry file="file://$PROJECT_DIR$/include/bytecodec/variantg8iu.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/bytecodec/variantg8cu.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="324">
+          <caret line="193" column="19" lean-forward="false" selection-start-line="193" selection-start-column="19" selection-end-line="193" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/include/wordcodec/simple16.hpp">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/6/tuple">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="1481" column="11" lean-forward="false" selection-start-line="1481" selection-start-column="11" selection-end-line="1481" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/FastPFor/headers/simple9.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="84" column="22" lean-forward="false" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/giindexer/combinerangeindexer.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/6/ext/new_allocator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/gcc/x86_64-linux-gnu/6/include/emmintrin.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="715" column="0" lean-forward="false" selection-start-line="715" selection-start-column="0" selection-end-line="715" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/FastPFor/headers/VarIntG8IU.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/FastPFor/headers/mersenne.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/FastPFor/headers/synthetic.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="144" column="6" lean-forward="false" selection-start-line="144" selection-start-column="6" selection-end-line="144" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/FastPFor/headers/pfor.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="41" column="6" lean-forward="false" selection-start-line="41" selection-start-column="6" selection-end-line="41" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/process.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="943">
+          <caret line="200" column="29" lean-forward="false" selection-start-line="200" selection-start-column="29" selection-end-line="200" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/stdint.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="54" column="28" lean-forward="false" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/giindexer/naivegiindexer.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/FastPFor/headers/util.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/bitcodec/block.hpp">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
-          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/6/ext/pb_ds/detail/type_utils.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/gcindexer/fourgram/invertedgcfour.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/bytecodec/variantbyte.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-387">
+          <caret line="10" column="34" lean-forward="false" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/bytecodec/bytealignedcommon.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="6" lean-forward="false" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/bitcodec/bitalignedcommon.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/include/wordcodec/simple9.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="41" lean-forward="false" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+        <state relative-caret-position="324">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/include/wordcodec/simple8b.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+        <state relative-caret-position="252">
+          <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/bitcodec/eliasgamma.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="45" lean-forward="false" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/interfaces/intermediate_x32.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/bitcodec/golombrice.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="18" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/bitcodec/eliasdelta.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/include/bitcodec/eliasomega.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="288">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/bitcodec/eliasgamma.hpp">
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="912" column="0" lean-forward="false" selection-start-line="912" selection-start-column="0" selection-end-line="912" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/phrasesim/rakibsim.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -759,123 +919,107 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/include/bytecodec/variantgb.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1509">
+          <caret line="3" column="9" lean-forward="false" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/bytecodec/variantg8cu.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/bytecodec/variantg8iu.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/include/gcindexer/trigram/invertedgctri.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/gcindexer/fourgram/invertedgcfour.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/tool.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="475" column="0" lean-forward="false" selection-start-line="475" selection-start-column="0" selection-end-line="475" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/4.9/bits/stl_vector.h" />
-    <entry file="file://$PROJECT_DIR$/include/bitcodec/block.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/bitcodec/eliasdelta.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="30" lean-forward="false" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/FastPFor/headers/simple16.h" />
-    <entry file="file://$PROJECT_DIR$/lib/FastPFor/headers/simple9.h" />
-    <entry file="file://$PROJECT_DIR$/lib/FastPFor/headers/simple8b.h" />
-    <entry file="file:///usr/include/c++/4.9/ext/new_allocator.h" />
-    <entry file="file:///usr/include/c++/4.9/limits" />
-    <entry file="file://$PROJECT_DIR$/lib/cmph-2.0/include/cmph.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/libtest.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="13" lean-forward="true" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        <state relative-caret-position="180">
+          <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
           <folding>
-            <element signature="e#199#1345#0" expanded="false" />
-            <element signature="e#1373#2249#0" expanded="false" />
+            <element signature="e#69#88#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+    <entry file="file://$PROJECT_DIR$/include/gcindexer/trigram/naivegctri.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="10" lean-forward="false" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+        <state relative-caret-position="144">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="e#63#82#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="64" lean-forward="false" selection-start-line="8" selection-start-column="64" selection-end-line="8" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/interfaces/intermediate_x64.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="45" lean-forward="false" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+        <state relative-caret-position="306">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/interfaces/intermediate_x32.hpp">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="55" lean-forward="false" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+        <state relative-caret-position="162">
+          <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/cmph-2.0/cxxmph/mph_index.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2268">
+          <caret line="47" column="5" lean-forward="false" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/include/interfaces/intermediate_x8.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="72">
+          <caret line="4" column="6" lean-forward="false" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/include/interfaces/giindexer.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        <state relative-caret-position="72">
+          <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/interfaces/intermediate_x64.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/interfaces/phrasesim.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/include/interfaces/gcindexer.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -888,114 +1032,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/interfaces/phrasesim.hpp">
+    <entry file="file://$PROJECT_DIR$/include/tool.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/bytecodec/variantgb.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="432">
+          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding>
-            <element signature="e#60#81#0" expanded="true" />
-            <element signature="e#217#238#0" expanded="true" />
-            <element signature="e#830#847#0" expanded="true" />
-            <element signature="e#1010#1027#0" expanded="true" />
+            <element signature="e#329#390#0" expanded="true" />
+            <element signature="e#585#1101#0" expanded="true" />
+            <element signature="e#1437#1495#0" expanded="true" />
+            <element signature="e#1977#1986#0" expanded="true" />
+            <element signature="e#2114#2123#0" expanded="true" />
+            <element signature="e#2989#3448#0" expanded="false" />
+            <element signature="e#3451#3895#0" expanded="false" />
+            <element signature="e#3897#4166#0" expanded="false" />
+            <element signature="e#4168#4622#0" expanded="false" />
+            <element signature="e#4624#5315#0" expanded="false" />
+            <element signature="e#5317#6074#0" expanded="false" />
+            <element signature="e#6076#7027#0" expanded="false" />
+            <element signature="e#7029#7516#0" expanded="false" />
+            <element signature="e#7519#7741#0" expanded="false" />
+            <element signature="e#7743#7959#0" expanded="false" />
+            <element signature="e#7961#8061#0" expanded="false" />
+            <element signature="e#8063#8384#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/bytecodec/variantbyte.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-          <folding>
-            <element signature="e#64#105#0" expanded="true" />
-            <element signature="e#289#306#0" expanded="true" />
-            <element signature="e#522#539#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/giindexer/naivegiindexer.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-          <folding>
-            <element signature="e#70#87#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/gcindexer/trigram/naivegctri.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/include/common.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#55#73#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/gfindexer/alignedgfindexer.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="175" column="41" lean-forward="false" selection-start-line="175" selection-start-column="41" selection-end-line="175" selection-end-column="41" />
+        <state relative-caret-position="234">
+          <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/process.hpp">
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+        <state relative-caret-position="387">
+          <caret line="23" column="38" lean-forward="false" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
           <folding>
-            <element signature="e#1437#2045#0" expanded="false" />
-            <element signature="e#2048#5175#0" expanded="false" />
-            <element signature="e#5178#8823#0" expanded="false" />
-            <element signature="e#8826#13362#0" expanded="false" />
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/gfindexer/compactgfindexer.hpp">
+    <entry file="file://$PROJECT_DIR$/test/libtest.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="197" column="0" lean-forward="false" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
+        <state relative-caret-position="169">
+          <caret line="164" column="54" lean-forward="true" selection-start-line="164" selection-start-column="54" selection-end-line="164" selection-end-column="54" />
           <folding>
-            <element signature="e#74#91#0" expanded="true" />
+            <element signature="e#721#1867#0" expanded="false" />
+            <element signature="e#2475#3131#0" expanded="false" />
+            <element signature="e#3134#4072#0" expanded="false" />
+            <element signature="e#5081#6022#0" expanded="false" />
+            <element signature="e#6025#7004#0" expanded="false" />
+            <element signature="e#7006#7943#0" expanded="false" />
+            <element signature="e#7946#9122#0" expanded="false" />
+            <element signature="e#9240#10444#0" expanded="false" />
+            <element signature="e#10471#11357#0" expanded="false" />
+            <element signature="e#11360#12203#0" expanded="false" />
+            <element signature="e#12205#12918#0" expanded="false" />
+            <element signature="e#12921#14171#0" expanded="false" />
+            <element signature="e#14173#14949#0" expanded="false" />
+            <element signature="e#14951#16122#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/giindexer/combinerangeindexer.hpp">
+    <entry file="file://$PROJECT_DIR$/include/util/bit_vector.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-749">
-          <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+        <state relative-caret-position="327">
+          <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding>
-            <element signature="e#81#102#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/gfindexer/naivegfindexer.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding>
-            <element signature="e#70#87#0" expanded="true" />
+            <element signature="e#63#84#0" expanded="true" />
+            <element signature="e#390#803#0" expanded="false" />
+            <element signature="e#807#920#0" expanded="false" />
+            <element signature="e#925#1771#0" expanded="false" />
+            <element signature="e#1775#2192#0" expanded="false" />
+            <element signature="e#2267#2285#0" expanded="true" />
+            <element signature="e#2258#2716#0" expanded="false" />
+            <element signature="e#2720#3561#0" expanded="false" />
+            <element signature="e#3576#3703#0" expanded="false" />
+            <element signature="e#3707#3895#0" expanded="false" />
+            <element signature="e#3908#3963#0" expanded="false" />
+            <element signature="e#4099#4114#0" expanded="true" />
+            <element signature="e#4450#4560#0" expanded="false" />
+            <element signature="e#4564#4695#0" expanded="false" />
           </folding>
         </state>
       </provider>

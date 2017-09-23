@@ -1,16 +1,18 @@
-#ifndef TEXTSIM_ELIASGAMMA_HPP
-#define TEXTSIM_ELIASGAMMA_HPP
+#ifndef TEXTSIM_GOLOMBRICE_HPP
+#define TEXTSIM_GOLOMBRICE_HPP
 
 #include "common.hpp"
 #include "bitalignedcommon.hpp"
+
 #include "interfaces/intermediate_x64.hpp"
+
 namespace textsim{
-class eliasgamma:public bitalignedcommon,public intermediate_x64{
+class golombrice:public bitalignedcommon,public intermediate_x64{
  public:
   void encode_x64(std::vector <uint32_t> &input,
-                          uint64_t &inputsize,
-                          std::vector <uint64_t> &output,
-                          uint64_t &intermediatesize) {
+                  uint64_t &inputsize,
+                  std::vector <uint64_t> &output,
+                  uint64_t &intermediatesize) {
 
   };
 
@@ -22,4 +24,4 @@ class eliasgamma:public bitalignedcommon,public intermediate_x64{
   }
 };
 };
-#endif //TEXTSIM_ELIASGAMMA_HPP
+#endif //TEXTSIM_GOLOMBRICE_HPP

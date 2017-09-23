@@ -154,6 +154,31 @@ void test_tieredindexer() {
   con.close();
 };
 
+//Pass
+void test_tieredindexer_with_load(){
+  textsim::CombineRangeIndexer *combineRangeIndexer = new textsim::CombineRangeIndexer(unigrammphpath,bigrammphpath);
+  combineRangeIndexer->initcmphbi(bigrammphpath);
+  combineRangeIndexer->initcmphcon(contextmphpath);
+  combineRangeIndexer->init(unigramcontentpath);
+
+  combineRangeIndexer->load(unigramserializationpath,bigramserializationpath,contextserializationpath);
+
+  std::cout<<combineRangeIndexer->get_unigram_id("ozitape")<<std::endl;
+  std::cout<<combineRangeIndexer->get_unigram_id("bosweath")<<std::endl;
+  std::cout<<combineRangeIndexer->get_unigram_id("popolazion")<<std::endl;
+  std::cout<<combineRangeIndexer->get_unigram_id("conversionvxi")<<std::endl;
+
+  std::cout<<combineRangeIndexer->get_unigram_id("selelc")<<std::endl;
+  std::cout<<combineRangeIndexer->get_unigram_id("awdhesh")<<std::endl;
+
+
+  std::cout<<combineRangeIndexer->get_bigram_id("ma senatori")<<std::endl;
+  std::cout<<combineRangeIndexer->get_bigram_id("upcom nortel")<<std::endl;
+  std::cout<<combineRangeIndexer->get_bigram_id("gilf hot")<<std::endl;
+  std::cout<<combineRangeIndexer->get_bigram_id("logitech lowepro")<<std::endl;
+
+};
+
 void test_naive_gfindexer() {
     std::vector<std::string> keysetpathvec;
 

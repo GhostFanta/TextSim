@@ -4,9 +4,35 @@
 #include "cmph.h"
 #include <string.h>
 
+#include "memutil.h"
+
 #include "simple9.h"
 #include "simple8b.h"
 #include "simple16.h"
+
+#include "VarIntG8IU.h"
+
+#include "wordcodec/simple9.hpp"
+#include "wordcodec/simple8b.hpp"
+#include "wordcodec/simple16.hpp"
+
+#include "bytecodec/variantbyte.hpp"
+#include "bytecodec/variantgb.hpp"
+#include "bytecodec/variantg8iu.hpp"
+#include "bytecodec/variantg8cu.hpp"
+
+#include "util/bit_vector.hpp"
+
+
+#include <memory>
+#include <iomanip>
+#include <time.h>
+#include "codecfactory.h"
+#include "util.h"
+#include "ztimer.h"
+#include "bitpacking.h"
+#include "synthetic.h"
+#include "cpubenchmark.h"
 
 namespace libtest {
 namespace cmph {
@@ -47,8 +73,242 @@ void test_cmph() {
 };
 };
 
+namespace util{
+
+void test_bit_vector_write_bit(){
+  std::vector<uint64_t> intermediate;
+  std::cout<<intermediate.size()<<std::endl;
+  {
+    textsim::bit_vector_handler util(intermediate);
+    util.write_bit<1>();
+    util.write_bit<0>();
+    util.write_bit<1>();
+  }
+  assert(0b1010000000000000000000000000000000000000000000000000000000000000 == intermediate[1]);
+  {
+    textsim::bit_vector_handler util(intermediate);
+    util.write_bit<1>();
+    util.write_bit<1>();
+    util.write_bit<1>();
+  }
+  assert(0b1011110000000000000000000000000000000000000000000000000000000000 == intermediate[1]);
+};
+
+void test_bit_vector_write_bits(){
+  std::vector<uint64_t> intermediate;
+  std::cout<<intermediate.size()<<std::endl;
+  {
+    textsim::bit_vector_handler util(intermediate);
+    util.write_bits(4,3);
+    util.write_bits(4,4);
+  }
+  ASSERT(0b1000100000000000000000000000000000000000000000000000000000000000 == intermediate[1],"member not match");
+  ASSERT(2 == intermediate.size(),"size not match");
+  {
+    textsim::bit_vector_handler util(intermediate);
+    util.write_bits(9,60);
+  }
+  ASSERT(3 == intermediate.size(),"size not match");
+  ASSERT(0b0010000000000000000000000000000000000000000000000000000000000000 == intermediate[2],"member not match");
+};
+
+void test_bit_vector_read_bit(){
+  std::vector<uint64_t> intermediate;
+  std::cout<<intermediate.size()<<std::endl;
+  {
+    textsim::bit_vector_handler util(intermediate);
+    util.write_bit<1>();
+    util.write_bit<0>();
+    util.write_bit<1>();
+  }
+  {
+    textsim::bit_vector_handler util(intermediate);
+    assert(util.read_bit() == 1);
+    assert(util.read_bit() == 0);
+    assert(util.read_bit() == 1);
+  }
+  {
+    textsim::bit_vector_handler util(intermediate);
+    util.write_bits(0b0010000000000000000000000000000000000000000000000000000000000000,64);
+    util.write_bits(0b111,3);
+  }
+  {
+    textsim::bit_vector_handler util(intermediate);
+    assert(util.read_bit() == 1);
+    assert(util.read_bit() == 1);
+    assert(util.read_bit() == 1);
+    for(size_t i = 0 ;i < 61; ++i){
+      assert(util.read_bit() == 0);
+    }
+    assert(util.read_bit() == 1);
+    assert(util.read_bit() == 0);
+    assert(util.read_bit() == 0);
+  }
+};
+
+void test_bit_vector_read_bits(){
+  std::vector<uint64_t> intermediate;
+  {
+    textsim::bit_vector_handler util(intermediate);
+    util.write_bits(0b00011100,8);
+    ASSERT(util.read_bits(8) == 0b00011100,"read bits within buffer not match");
+  }
+  {
+    textsim::bit_vector_handler util(intermediate);
+    util.write_bits(0b101010101010101010101010101010101010101010101010101010101010101,63);
+    util.write_bits(0b000111,6);
+    ASSERT(util.read_bits(6) == 0b000111,"accross border failed");
+    util.clear();
+  }
+  {
+    textsim::bit_vector_handler util(intermediate);
+    util.write_bits(0b101010101010100000000000000000000000000000000000001010101010101,63);
+    util.write_bits(0b111000,6);
+  }
+  {
+    textsim::bit_vector_handler util(intermediate);
+    ASSERT(util.read_bits(5) == 0b11000,"accross border partial failed");
+    ASSERT(util.read_bit() == 1,"read 1 failed");
+    ASSERT(util.read_bits(6) == 0b010101,"read partial faild");
+  }
+}
+
+};
+
+namespace variantbit{
+
+}
+
+namespace variantbyte{
+
+// Passes
+void test_variant_byte_actual() {
+  textsim::vbyte codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  std::vector<uint8_t> intermediate;
+  size_t originalsize = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x8(data,originalsize,intermediate,intermediatesize);
+  std::vector<uint32_t> recover;
+  size_t expectednum = data.size();
+  codec.decode_x8(intermediate,intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++) {
+    assert(recover[i] == data[i]);
+  }
+};
+
+// Passes
+void test_variant_byte_interface(){
+  textsim::intermediate_x8 *codec = new textsim::vbyte();
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  std::vector<uint8_t> intermediate;
+  size_t originalsize = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec->encode_x8(data,originalsize,intermediate,intermediatesize);
+  std::vector<uint32_t> recover;
+  size_t expectednum = data.size();
+  codec->decode_x8(intermediate,intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++) {
+    assert(recover[i] == data[i]);
+  }
+}
+
+// Passes
+void test_variant_gb_actual() {
+  textsim::variantgb codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  std::vector<uint8_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t expectednum = data.size();
+  size_t originalsize = expectednum;
+  size_t intermediatesize = originalsize;
+  codec.encode_x8(data,originalsize, intermediate,intermediatesize);
+  codec.decode_x8(intermediate,intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++) {
+    assert(data[i] == recover[i]);
+  }
+};
+
+void test_variant_g8iu_actual() {
+  FastPForLib::VarIntG8IU codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+  size_t originalnum = data.size();
+  size_t recoversize = originalnum;
+
+  std::vector<uint32_t> intermediate;
+  intermediate.resize(originalnum * 2+ 1024);
+  size_t intermediatesize = intermediate.size();
+  std::vector<uint32_t> recover;
+  recover.resize(originalnum+1024);
+
+  codec.encodeArray(data.data(),data.size(),intermediate.data(),intermediatesize);
+  codec.decodeArray(intermediate.data(),intermediate.size(),recover.data(),recoversize);
+
+  for(size_t i = 0 ; i < recover.size(); i++){
+    std::cout<<"data["<<i<<"]:\t"<<data[i]<<std::endl;
+    std::cout<<"recover["<<i<<"]:\t"<<recover[i]<<std::endl;
+    assert(data[i]== recover[i]);
+  };
+};
+
+void test_variant_g8cu_actual(){
+
+};
+};
+
+namespace framebased{
+
+using namespace FastPForLib;
+using namespace std;
+
+void test_pfor(){
+  std::vector<uint32_t> data = {
+      1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+      1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+      1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  };
+  PFor codec;
+  size_t originsize = data.size();
+  size_t intermediatesize = originsize;
+  std::vector<uint32_t> intermediate;
+  intermediate.resize(intermediatesize);
+  uint32_t *intermediatep = &intermediate[0];
+  std::vector<uint32_t> recoverdata;
+  recoverdata.resize(originsize+1024);
+
+  codec.encodeArray(data.data(), data.size(), intermediate.data(), intermediatesize);
+  codec.decodeArray(intermediate.data(), intermediate.size(), recoverdata.data(), originsize);
+  for (size_t i = 0; i < data.size(); i++) {
+    std::cout << "data[" << i << "]\t" << data[i] << "\t";
+    std::cout << "recoverdata[" << i << "]\t" << recoverdata[i] << std::endl;
+    assert(recoverdata[i] == data[i]);
+  }
+  recoverdata.shrink_to_fit();
+}
+
+}
+
 namespace fastpfor {
 
+// Passes
 void test_simple8b_actual() {
   std::vector<uint32_t> data = {
       1, 225, 1, 235, 1, 345, 1, 644, 1, 221,
@@ -70,13 +330,60 @@ void test_simple8b_actual() {
     std::cout << "recoverdata[" << i << "]\t" << recoverdata[i] << std::endl;
     assert(recoverdata[i] == data[i]);
   }
-}
+};
 
-void test_simple16_actual() {
+// Passes
+void test_simple8b_wapped(){
   std::vector<uint32_t> data = {
       1, 225, 1, 235, 1, 345, 1, 644, 1, 221,
       1, 225, 1, 235, 1, 345, 1, 644, 1, 221,
       1, 225, 1, 235, 1, 345, 1, 644, 1, 221
+  };
+  textsim::simple8bcodec codec;
+  size_t originsize = data.size();
+  size_t intermediatesize = originsize;
+  std::vector<uint32_t> intermediate;
+  intermediate.resize(intermediatesize);
+  std::vector<uint32_t> recoverdata;
+  recoverdata.resize(originsize);
+
+  codec.encode_x32(data, originsize, intermediate, intermediatesize);
+  codec.decode_x32(intermediate,intermediatesize,recoverdata, originsize);
+  for (size_t i = 0; i < data.size(); i++) {
+    std::cout << "data[" << i << "]\t" << data[i] << "\t";
+    std::cout << "recoverdata[" << i << "]\t" << recoverdata[i] << std::endl;
+    assert(recoverdata[i] == data[i]);
+  }
+}
+
+// Passes
+void test_simple16_dummy(){
+ std::vector<uint32_t> data = {
+      1, 225, 1, 235, 1, 345, 1, 644, 1, 221
+  };
+  FastPForLib::Simple16<false> codec;
+  size_t originsize = data.size();
+  std::vector<uint32_t> intermediate(data.size());
+  size_t intermediatesize = intermediate.size();
+  uint32_t *intermediatep = &intermediate[0];
+  std::vector<uint32_t> recoverdata;
+  recoverdata.resize(originsize+1024);
+
+  codec.encodeArray(&data[0], data.size(), intermediate.data(), intermediatesize);
+  codec.decodeArray(intermediate.data(), intermediate.size(), recoverdata.data(), originsize);
+  for(size_t i = 0 ; i < data.size(); i++){
+    assert(data[i] == recoverdata[i]);
+  }
+  recoverdata.shrink_to_fit();
+};
+
+// Passes
+void test_simple16_actual() {
+  std::vector<uint32_t> data = {
+      1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+      1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+      1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
   };
   FastPForLib::Simple16<false> codec;
   size_t originsize = data.size();
@@ -85,30 +392,7 @@ void test_simple16_actual() {
   intermediate.resize(intermediatesize);
   uint32_t *intermediatep = &intermediate[0];
   std::vector<uint32_t> recoverdata;
-  recoverdata.resize(originsize);
-
-  codec.encodeArray(&data[0], data.size(), intermediatep, intermediatesize);
-  codec.decodeArray(intermediatep, intermediate.size(), &recoverdata[0], originsize);
-  for (size_t i = 0; i < data.size(); i++) {
-    std::cout << "data[" << i << "]\t" << data[i] << "\t";
-    std::cout << "recoverdata[" << i << "]\t" << recoverdata[i] << std::endl;
-    assert(recoverdata[i] == data[i]);
-  }
-}
-
-void test_simple9_actual() {
-  std::vector<uint32_t> data = {
-      1, 225, 1, 235, 1, 345, 1, 644, 1, 221,
-      1, 225, 1, 235, 1, 345, 1, 644, 1, 221,
-      1, 225, 1, 235, 1, 345, 1, 644, 1, 221
-  };
-  FastPForLib::Simple9<false> codec;
-  size_t originsize = data.size();
-  size_t intermediatesize = originsize;
-  std::vector<uint32_t> intermediate;
-  intermediate.resize(intermediatesize);
-  std::vector<uint32_t> recoverdata;
-  recoverdata.resize(originsize);
+  recoverdata.resize(originsize+1024);
 
   codec.encodeArray(data.data(), data.size(), intermediate.data(), intermediatesize);
   codec.decodeArray(intermediate.data(), intermediate.size(), recoverdata.data(), originsize);
@@ -117,18 +401,54 @@ void test_simple9_actual() {
     std::cout << "recoverdata[" << i << "]\t" << recoverdata[i] << std::endl;
     assert(recoverdata[i] == data[i]);
   }
-};
+  recoverdata.shrink_to_fit();
+}
 
-void test_variant_byte_actual() {
+// Passes
+void test_simple9_dummy(){
+   std::vector<uint32_t> data = {
+       1,1,1,1,1,1,1,1,1
+  };
+  FastPForLib::Simple9<false> codec;
+  size_t originsize = data.size();
+  size_t intermediatesize = originsize;
+  std::vector<uint32_t> intermediate;
+  intermediate.resize(intermediatesize);
+  std::vector<uint32_t> recoverdata;
+  recoverdata.resize(originsize+1024);
 
-};
+  codec.encodeArray(data.data(), data.size(), intermediate.data(), intermediatesize);
+  codec.decodeArray(intermediate.data(), intermediate.size(), recoverdata.data(), originsize);
+  for (size_t i = 0; i < data.size(); i++) {
+    std::cout << "data[" << i << "]\t" << data[i] << "\t";
+    std::cout << "recoverdata[" << i << "]\t" << recoverdata[i] << std::endl;
+    assert(recoverdata[i] == data[i]);
+  }
+}
 
-void test_variant_gb_actual() {
+// Passes
+void test_simple9_actual() {
+  std::vector<uint32_t> data = {
+      1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+      1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+      1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  };
+  FastPForLib::Simple9<false> codec;
+  size_t originsize = data.size();
+  size_t intermediatesize = originsize;
+  std::vector<uint32_t> intermediate;
+  intermediate.resize(intermediatesize);
+  std::vector<uint32_t> recoverdata;
+  recoverdata.resize(originsize+1024);
 
-};
-
-void test_variant_g8iu_actual() {
-
+  codec.encodeArray(data.data(), data.size(), intermediate.data(), intermediatesize);
+  codec.decodeArray(intermediate.data(), intermediate.size(), recoverdata.data(), originsize);
+  for (size_t i = 0; i < data.size(); i++) {
+    std::cout << "data[" << i << "]\t" << data[i] << "\t";
+    std::cout << "recoverdata[" << i << "]\t" << recoverdata[i] << std::endl;
+    assert(recoverdata[i] == data[i]);
+  }
 };
 
 };
