@@ -6,7 +6,7 @@
 
 #include "interfaces/intermediate_x64.hpp"
 namespace textsim{
-class eliasomega:public bitalignedcommon,public intermediate_x64{
+class elias_omega:public bitalignedcommon,public intermediate_x64{
  public:
   void encode_x64(std::vector <uint32_t> &input,
                           uint64_t &inputsize,

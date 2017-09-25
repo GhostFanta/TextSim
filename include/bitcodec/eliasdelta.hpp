@@ -4,6 +4,8 @@
 #include "common.hpp"
 #include "bitalignedcommon.hpp"
 #include "interfaces/intermediate_x64.hpp"
+#include "util/bit_vector.hpp"
+
 namespace textsim{
 class elias_delta:public bitalignedcommon,public intermediate_x64{
  public:
@@ -19,7 +21,7 @@ class elias_delta:public bitalignedcommon,public intermediate_x64{
                   std::vector<uint32_t> &output,
                   uint64_t &intermediatesize){
 
-  }
+  };
 
 };
 }

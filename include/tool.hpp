@@ -109,11 +109,19 @@ static void show_uint64t_binary(uint64_t input, std::string message){
   show_uint64t_binary(input);
 }
 
-static void show_byte_binary(std::string message, uint8_t input) {
+static void show_byte_binary( uint8_t input,std::string message) {
   std::cout << message << "\t";
   show_byte_binary(input);
 }
+
+static void show_uint64_array_binary(std::vector<uint64_t> &input, std::string message){
+  std::cout<<message<<std::endl;
+  for(size_t i = 0 ; i < input.size() ; i++ ){
+    textsim::logger::show_uint64t_binary(input[i],"array["+ std::to_string(i) + "]:\t");
+  }
+};
 }
+
 namespace tool {
 
 inline static std::vector<std::string> string_split(std::string s, const char delimeter) {
@@ -264,6 +272,7 @@ static inline std::string remove_punctuation(std::string &input) {
   return result;
 }
 }
+
 }
 
 namespace fastdelta {

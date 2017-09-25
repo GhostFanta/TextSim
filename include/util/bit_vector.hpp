@@ -24,13 +24,18 @@ class bit_vector_handler{
       this->_buffer = 0;
       this->_num_of_buffered_bits = 0;
     }else{
-      this->_num_of_buffered_bits = this->data[0] % WORDSIZE;
+      // DO not forget, when buffer is full, this operation will lead to 0.
+      this->_num_of_buffered_bits = this->data[0] % WORDSIZE == 0 ? WORDSIZE : this->data[0] % WORDSIZE;
       this->_buffer = this->data.back();
       this->data.pop_back();
     }
+    std::cout<<"init check buf"<<std::endl;
+    this->look_buf();
   }
 
   ~bit_vector_handler(){
+    std::cout<<"deconstructor check buf"<<std::endl;
+    this->look_buf();
     if(this->_num_of_buffered_bits != 0){
       this->flush();
     }
@@ -47,7 +52,6 @@ class bit_vector_handler{
       res |= (this->_buffer >> (WORDSIZE - this->_num_of_buffered_bits));
       this->_buffer = this->data.back();
       this->_num_of_buffered_bits = WORDSIZE - num_highbits;
-      textsim::logger::show_uint64t_binary(res | ((((1 << num_highbits) - 1) & this->_buffer) << num_lowbits));
       return res | ((((1 << num_highbits) - 1) & this->_buffer) << num_lowbits);
     }else{
       this->_num_of_buffered_bits -= len;
@@ -59,14 +63,18 @@ class bit_vector_handler{
   inline bool read_bit(){
     ASSERT(0 != this->data[0],"empty storage!");
     --this->data[0];              // Decrease all bits
-    if(_num_of_buffered_bits == 0){
+    if(this->_num_of_buffered_bits == 0 || this->_num_of_buffered_bits > 64){
       this->_buffer = this->data.back();
       this->data.pop_back();
-      --this->_num_of_buffered_bits;// Decrease buffered bits
+      this->_num_of_buffered_bits = WORDSIZE - 1;
       return this->_buffer & 1;
     }else{
-      return this->_buffer & (1ul << --this->_num_of_buffered_bits);
+      return (this->_buffer) & (1ul << (WORDSIZE - this->_num_of_buffered_bits--));
     }
+  }
+
+  inline uint64_t read_bits_reverse(){
+
   }
 
   inline bool is_empty(){
@@ -90,7 +98,7 @@ class bit_vector_handler{
 
   inline void write_bits(uint64_t val,size_t num_of_bits){
     // Cannot handle bit width larger than buffer size at one operation.
-    ASSERT(num_of_bits < 64,"unable to handle data more than 64 bits at once");
+    ASSERT(num_of_bits <= 64,"unable to handle data more than 64 bits at once");
     this->data[0] += num_of_bits;
     // If buffer will be full
     if(num_of_bits > WORDSIZE - this->_num_of_buffered_bits){
@@ -106,6 +114,10 @@ class bit_vector_handler{
       this->_num_of_buffered_bits += num_of_bits;
     }
   };
+
+  inline void write_bits_reverse(uint64_t,size_t num_of_bits){
+    // TODO: add reverse write
+  }
 
  private:
   inline void flush(){
@@ -142,8 +154,35 @@ class bit_vector_handler{
   }
 
   inline void look_buf(){
-    std::bitset<64> demo(this->_buffer);
-    std::cout<<"buf:\t"<<demo<<std::endl;
+    std::cout<<"buf bits:\t"<<this->_num_of_buffered_bits<<std::endl;
+//    textsim::logger::show_uint64t_binary(this->_buffer,"buf:\t");
+    std::cout<<"buf:\t";
+    size_t demo = this->_buffer >> (WORDSIZE - this->_num_of_buffered_bits);
+    std::vector<bool> temp;
+    size_t highbitsnum = this->_num_of_buffered_bits;
+    while(highbitsnum > 0 && highbitsnum < 64){
+      temp.push_back(demo & 1);
+      demo >>= 1;
+      highbitsnum--;
+    }
+      for (size_t i = temp.size() - 1; i <= 64; i--) {
+        std::cout << temp[i];
+      }
+    std::cout<<" ";
+
+    size_t numlowbits = (WORDSIZE - this->_num_of_buffered_bits);
+    size_t mask = (1 << (WORDSIZE - this->_num_of_buffered_bits)) - 1;
+    size_t lowbits = mask & this->_buffer;
+    std::vector<bool> temp1;
+    while(numlowbits > 0 && numlowbits < 64){
+      temp1.push_back(lowbits & 1);
+      lowbits >>= 1;
+      numlowbits--;
+    }
+    for(size_t i = temp1.size() - 1; i <= 64; i--){
+      std::cout<<temp1[i];
+    }
+    std::cout<<std::endl;
   }
 
   inline void check_buffer(size_t expectedbuffer){

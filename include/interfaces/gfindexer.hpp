@@ -9,6 +9,5 @@ class GFindexer {
   // Get the frequence of the given bigram string in the ngram corpus.
   virtual unsigned long get_freq(std::string targetphrase) = 0;
 };
-
 }  // namespace phsim
 #endif //TEXTSIM_GFINDEXER_HPP

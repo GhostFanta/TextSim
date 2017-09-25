@@ -1,6 +1,8 @@
 #ifndef TEXTSIM_BYTEALIGNEDCOMMON_HPP
 #define TEXTSIM_BYTEALIGNEDCOMMON_HPP
 
+#include "common.hpp"
+
 namespace textsim{
 class bytealignedcommon{
  protected:

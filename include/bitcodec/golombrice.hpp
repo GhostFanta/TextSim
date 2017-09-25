@@ -7,7 +7,7 @@
 #include "interfaces/intermediate_x64.hpp"
 
 namespace textsim{
-class golombrice:public bitalignedcommon,public intermediate_x64{
+class golomb_rice:public bitalignedcommon,public intermediate_x64{
  public:
   void encode_x64(std::vector <uint32_t> &input,
                   uint64_t &inputsize,
