@@ -47,6 +47,7 @@ public:
 
   inline uint64_t read_bits(size_t len)
   {
+    ASSERT(len > 0 , "cannot read 0 bits");
     ASSERT(len <= this->data[0], "cannot read bits more than storage");
     this->data[0] -= len;
     if (len > _num_of_buffered_bits)
@@ -71,6 +72,12 @@ public:
     }
   }
 
+  inline uint64_t read_bits_reverse(size_t len){
+    uint64_t res = this->read_bits(len);
+    res = this->reverse_x64(res);
+    return (res >> (WORDSIZE - len));
+  }
+
   inline bool read_bit()
   {
     ASSERT(0 != this->data[0], "empty storage!");
@@ -88,10 +95,6 @@ public:
       --_num_of_buffered_bits;
       return res;
     }
-  }
-
-  inline uint64_t read_bits_reverse()
-  {
   }
 
   inline bool is_empty()
@@ -122,6 +125,9 @@ public:
   {
     // Cannot handle bit width larger than buffer size at one operation.
     ASSERT(num_of_bits <= 64, "unable to handle data more than 64 bits at once");
+    if(num_of_bits <= 0){
+      return;
+    }
     this->data[0] += num_of_bits;
     // If buffer will be full
     if (num_of_bits > WORDSIZE - this->_num_of_buffered_bits)
@@ -141,9 +147,11 @@ public:
     }
   };
 
-  inline void write_bits_reverse(uint64_t, size_t num_of_bits)
+  inline void write_bits_reverse(uint64_t input, size_t num_of_bits)
   {
-    // TODO: add reverse write
+    input = this->reverse_x64(input);
+    input >>= (WORDSIZE - num_of_bits);
+    this->write_bits(input,num_of_bits);
   }
 
 private:
@@ -161,6 +169,29 @@ private:
       this->_buffer = (this->data.back() >> (WORDSIZE - _num_of_buffered_bits));
       this->data.pop_back();
     }
+  }
+
+  // Taken from https://matthewarcus.wordpress.com/2012/11/18/reversing-a-64-bit-word/
+  // Efficient way for 64-bit word reversing.
+
+  template <typename T, T m, int k>
+  inline T swapbits(T p) {
+    T q = ((p>>k)^p)&m;
+    return p^q^(q<<k);
+  }
+
+  uint64_t reverse_x64(uint64_t n)
+  {
+    static const uint64_t m0 = 0x5555555555555555LLU;
+    static const uint64_t m1 = 0x0300c0303030c303LLU;
+    static const uint64_t m2 = 0x00c0300c03f0003fLLU;
+    static const uint64_t m3 = 0x00000ffc00003fffLLU;
+    n = ((n>>1)&m0) | (n&m0)<<1;
+    n = swapbits<uint64_t, m1, 4>(n);
+    n = swapbits<uint64_t, m2, 8>(n);
+    n = swapbits<uint64_t, m3, 20>(n);
+    n = (n >> 34) | (n << 30);
+    return n;
   }
 
 public:

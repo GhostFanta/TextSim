@@ -231,10 +231,53 @@ void test_deal_with_actual()
   }
   std::cout << "---------------read bits pass-----------" << std::endl;
 };
+
+void test_write_bits_reverse(){
+  std::vector<uint64_t> store;
+  {
+    textsim::bit_vector_handler util(store);
+    util.write_bits_reverse(0b111000,6);
+  }
+  {
+    textsim::bit_vector_handler util(store);
+    ASSERT(util.read_bits(6) == 0b000111,"reverse writing failed");
+  }
+  std::cout<<"----------------write bits reverse pass---------------"<<std::endl;
+
+}
+
+void test_read_bits_reverse(){
+   std::vector<uint64_t> store;
+  {
+    textsim::bit_vector_handler util(store);
+    util.write_bits_reverse(0b111000,6);
+    util.write_bits_reverse(0b11110001111000,14);
+  }
+  {
+    textsim::bit_vector_handler util(store);
+    ASSERT(util.read_bits_reverse(14) == 0b11110001111000,"reverse read failed");
+    ASSERT(util.read_bits_reverse(6) == 0b111000,"reverse read failed");
+  }
+  std::cout<<"----------------read bits reverse pass---------------"<<std::endl;
+}
 };
 
 namespace variantbit
 {
+
+void test_bitaligned_common(){
+  textsim::bitalignedcommon test;
+  ASSERT(test._log_2_floor(1) == 0,"log2 floor failed");
+  ASSERT(test._log_2_floor(4) == 2,"log2 floor failed");
+  ASSERT(test._log_2_floor(7) == 2,"log2 floor failed");
+  ASSERT(test._log_2_floor(8) == 3,"log2 floor failed");
+  ASSERT(test._log_2_floor(15) == 3,"log2 floor failed");
+  ASSERT(test._log_2_floor(17) == 4,"log2 floor failed");
+  ASSERT(test._log_2_floor(31) == 4,"log2 floor failed");
+  ASSERT(test._log_2_floor(32) == 5,"log2 floor failed");
+  ASSERT(test._log_2_floor(63) == 5,"log2 floor failed");
+  ASSERT(test._log_2_floor(64) == 6,"log2 floor failed");
+}
 
 void test_elias_gamma_dummy()
 {
@@ -264,8 +307,8 @@ void test_elias_gamma_short_actual()
       {
           1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
           1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
-          1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265};
-  std::cout << "original size\t" << data.size() << std::endl;
+          1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265
+      };
   std::vector<uint64_t> intermediate;
   std::vector<uint32_t> recover;
   size_t originalsize = data.size();
@@ -302,6 +345,24 @@ void test_elias_gamma()
   std::cout<<"---------------test elias gamma pass------------------"<<std::endl;
 }
 
+
+void test_elias_delta_dummy(){
+  textsim::elias_delta codec;
+  std::vector<uint32_t> data =
+      {1,2,3,4,5};
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x64(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+  }
+}
+
 void test_elias_delta()
 {
   textsim::elias_delta codec;
@@ -309,6 +370,24 @@ void test_elias_delta()
       {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
        1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
        1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266};
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x64(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+  }
+  std::cout<<"---------------elias delta pass---------------"<<std::endl;
+}
+
+void test_elias_omega_dummy(){
+  textsim::elias_omega codec;
+  std::vector<uint32_t> data =
+      {1,2,3,4,5};
   std::vector<uint64_t> intermediate;
   std::vector<uint32_t> recover;
   size_t originalsize = data.size();
@@ -398,6 +477,25 @@ void test_block()
   }
   std::cout<<"---------------test block pass-------"<<std::endl;
 };
+
+void test_golombrice_dummy(){
+  textsim::golomb_rice codec;
+  std::vector<uint32_t> data =
+      {
+          1,2,3,4,5
+      };
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x64(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+  }
+}
 
 void test_golombrice()
 {
