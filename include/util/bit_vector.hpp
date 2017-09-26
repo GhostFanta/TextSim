@@ -29,12 +29,13 @@ class bit_vector_handler{
       this->_buffer = this->data.back();
       this->data.pop_back();
     }
-    std::cout<<"init check buf"<<std::endl;
+
+    std::cout<<"init\t";
     this->look_buf();
   }
 
   ~bit_vector_handler(){
-    std::cout<<"deconstructor check buf"<<std::endl;
+    std::cout<<"dec:\t";
     this->look_buf();
     if(this->_num_of_buffered_bits != 0){
       this->flush();
@@ -51,6 +52,7 @@ class bit_vector_handler{
       size_t num_highbits = len - num_lowbits;
       res |= (this->_buffer >> (WORDSIZE - this->_num_of_buffered_bits));
       this->_buffer = this->data.back();
+      this->data.pop_back();
       this->_num_of_buffered_bits = WORDSIZE - num_highbits;
       return res | ((((1 << num_highbits) - 1) & this->_buffer) << num_lowbits);
     }else{
@@ -155,7 +157,6 @@ class bit_vector_handler{
 
   inline void look_buf(){
     std::cout<<"buf bits:\t"<<this->_num_of_buffered_bits<<std::endl;
-//    textsim::logger::show_uint64t_binary(this->_buffer,"buf:\t");
     std::cout<<"buf:\t";
     size_t demo = this->_buffer >> (WORDSIZE - this->_num_of_buffered_bits);
     std::vector<bool> temp;

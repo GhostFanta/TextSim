@@ -186,6 +186,41 @@ void test_bit_vector_read_bits(){
   }
   std::cout<<"----------read bits pass-----------"<<std::endl;
 }
+
+void test_deal_with_actual(){
+  std::vector<uint64_t> intermediate;
+  {
+    textsim::bit_vector_handler util(intermediate);
+    util.write_bits(0b00011100,8);
+    ASSERT(util.read_bits(8) == 0b00011100,"read bits within buffer not match");
+  }
+  {
+    textsim::bit_vector_handler util(intermediate);
+    util.write_bits(0b101010101010101010101010101010101010101010101010101010101010101,63);
+    util.write_bits(0b000111,6);
+    ASSERT(util.read_bits(6) == 0b000111,"accross border failed");
+    util.clear();
+  }
+  {
+    textsim::bit_vector_handler util(intermediate);
+    util.write_bits(0b101010101010100000000000000000000000000000000000001010101010101,63);
+    util.write_bits(0b111000,6);
+  }
+  {
+    textsim::bit_vector_handler util(intermediate);
+    ASSERT(util.read_bits(5) == 0b11000,"accross border partial failed");
+    ASSERT(util.read_bit() == 1,"read 1 failed");
+    ASSERT(util.read_bits(6) == 0b010101,"read partial faild");
+    util.clear();
+  }
+  {
+    textsim::bit_vector_handler util(intermediate);
+    util.write_bits(0b101010101010100000000000000000000000000000000000001010101010101,63);
+    util.write_bits(0b111000,6);
+    ASSERT(util.read_bits(8) == 0b01111000, "Read cross border directly failed");
+  }
+  std::cout<<"----------read bits pass-----------"<<std::endl;
+};
 };
 
 namespace variantbit{
@@ -247,7 +282,7 @@ void test_elias_gamma(){
   codec.encode_x64(data, originalsize , intermediate,intermediatesize);
   codec.decode_x64(intermediate,intermediatesize, recover, expectednum);
   for (size_t i = 0; i < data.size(); i++) {
-    assert(data[i] == recover[i]);
+    ASSERT(data[i] == recover[i],"member "+std::to_string(i)+" not equal");
   }
 }
 
@@ -265,7 +300,7 @@ textsim::elias_delta codec;
   codec.encode_x64(data,originalsize, intermediate,intermediatesize);
   codec.decode_x64(intermediate,intermediatesize, recover, expectednum);
   for (size_t i = 0; i < data.size(); i++) {
-    assert(data[i] == recover[i]);
+    ASSERT(data[i] == recover[i],"member "+std::to_string(i)+" not equal");
   }
 }
 
@@ -283,7 +318,32 @@ void test_elias_omega(){
   codec.encode_x64(data,originalsize,intermediate,intermediatesize);
   codec.decode_x64(intermediate,intermediatesize, recover, expectednum);
   for (size_t i = 0; i < data.size(); i++) {
-    assert(data[i] == recover[i]);
+    ASSERT(data[i] == recover[i],"member "+std::to_string(i)+" not equal");
+  }
+}
+
+void test_block_actual_small(){
+ textsim::block<2> codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266
+      };
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data,originalsize, intermediate,intermediatesize);
+  codec.decode_x64(intermediate,intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++) {
+    try {
+      ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+      std::cout<<data[i]<<"----------"<<recover[i]<<std::endl;
+    }catch (exception &e){
+      textsim::logger::show_uint64t_binary(data[i],"original:\t");
+      textsim::logger::show_uint64t_binary(recover[i],"recover:\t");
+    }
   }
 }
 
@@ -302,7 +362,13 @@ textsim::block<2> codec;
   codec.encode_x64(data,originalsize, intermediate,intermediatesize);
   codec.decode_x64(intermediate,intermediatesize, recover, expectednum);
   for (size_t i = 0; i < data.size(); i++) {
-    assert(data[i] == recover[i]);
+    try {
+//      ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+      std::cout<<data[i]<<"----------"<<recover[i]<<std::endl;
+    }catch (exception &e){
+      textsim::logger::show_uint64t_binary(data[i],"original:\t");
+      textsim::logger::show_uint64t_binary(recover[i],"recover:\t");
+    }
   }
 };
 
@@ -320,7 +386,7 @@ textsim::golomb_rice codec;
   codec.encode_x64(data,originalsize, intermediate,intermediatesize);
   codec.decode_x64(intermediate,intermediatesize, recover, expectednum);
   for (size_t i = 0; i < data.size(); i++) {
-    assert(data[i] == recover[i]);
+    ASSERT(data[i] == recover[i],"member "+std::to_string(i)+" not equal");
   }
 };
 
