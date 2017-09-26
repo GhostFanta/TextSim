@@ -30,7 +30,6 @@ class elias_gamma: public bitalignedcommon,public intermediate_x64{
         size_t num_bits = _num_of_binary_bits((uint64_t) input[i]);
         if (num_bits == 1) {
           handler.write_bit<1>();
-//          handler.look_buf();
           continue;
         }
         size_t mask = (1 << (num_bits - 1)) - 1;
@@ -38,9 +37,7 @@ class elias_gamma: public bitalignedcommon,public intermediate_x64{
         handler.write_bit<1>();
         handler.write_bits(0, num_bits - 1);
       }
-//      handler.look_buf();
     }
-//    textsim::logger::show_uint64_array_binary(output,"");
   };
 
   /**
@@ -71,12 +68,7 @@ class elias_gamma: public bitalignedcommon,public intermediate_x64{
           output[recoversize - 1] = ((1UL << num_bits) | res);
         }
         --recoversize;
-        handler.look_buf();
       };
-      for(auto i : output){
-        std::cout<<i<<"\t";
-      }
-      std::cout<<std::endl;
     }
   };
 };
