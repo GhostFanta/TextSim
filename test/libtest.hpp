@@ -449,7 +449,7 @@ void test_block_actual_small()
   }
 }
 
-void test_block()
+void test_block_2()
 {
   textsim::block<2> codec;
   std::vector<uint32_t> data =
@@ -475,8 +475,122 @@ void test_block()
       textsim::logger::show_uint64t_binary(recover[i], "recover:\t");
     }
   }
-  std::cout<<"---------------test block pass-------"<<std::endl;
+  std::cout<<"---------------test block 2 pass-------"<<std::endl;
 };
+
+void test_block_3()
+{
+  textsim::block<3> codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266};
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x64(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    try
+    {
+      ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+    }
+    catch (exception &e)
+    {
+      textsim::logger::show_uint64t_binary(data[i], "original:\t");
+      textsim::logger::show_uint64t_binary(recover[i], "recover:\t");
+    }
+  }
+  std::cout<<"---------------test block 3 pass-------"<<std::endl;
+}
+
+void test_block_4()
+{
+  textsim::block<4> codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266};
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x64(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    try
+    {
+      ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+    }
+    catch (exception &e)
+    {
+      textsim::logger::show_uint64t_binary(data[i], "original:\t");
+      textsim::logger::show_uint64t_binary(recover[i], "recover:\t");
+    }
+  }
+  std::cout<<"---------------test block 4 pass-------"<<std::endl;
+}
+void test_block_5()
+{
+  textsim::block<5> codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266};
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x64(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    try
+    {
+      ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+    }
+    catch (exception &e)
+    {
+      textsim::logger::show_uint64t_binary(data[i], "original:\t");
+      textsim::logger::show_uint64t_binary(recover[i], "recover:\t");
+    }
+  }
+  std::cout<<"---------------test block 5 pass-------"<<std::endl;
+}
+void test_block_6()
+{
+  textsim::block<6> codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266};
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x64(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    try
+    {
+      ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+    }
+    catch (exception &e)
+    {
+      textsim::logger::show_uint64t_binary(data[i], "original:\t");
+      textsim::logger::show_uint64t_binary(recover[i], "recover:\t");
+    }
+  }
+  std::cout<<"---------------test block 6 pass-------"<<std::endl;
+}
 
 void test_golombrice_dummy(){
   textsim::golomb_rice codec;
