@@ -92,8 +92,6 @@ class CombineRangeIndexer : public GIIndexer {
     for (auto &i : threads) {
       i.join();
     }
-
-    std::cout << "unigram 6345254\t" << this->uniarray[6345254] << std::endl;
   }
 
   void initbi(std::string bigramset) {

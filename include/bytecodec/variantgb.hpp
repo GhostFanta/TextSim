@@ -5,6 +5,8 @@
 #include "common.hpp"
 #include "interfaces/intermediate_x8.hpp"
 
+// How to deal with tail elements
+//
 namespace textsim{
     class variantgb: public bytealignedcommon, public intermediate_x8{
     public:

@@ -1,7 +1,7 @@
 #ifndef TEXTSIM_NAIVEGCTRI_HPP
 #define TEXTSIM_NAIVEGCTRI_HPP
 
-#include "common.h"
+#include "common.hpp"
 #include "interfaces/gcindexer.hpp"
 
 namespace textsim{

@@ -7,7 +7,7 @@
 #include "interfaces/intermediate_x64.hpp"
 
 namespace textsim{
-template <size_t b, size_t v>
+template <size_t divisor>
 class golomb_rice:public bitalignedcommon,public intermediate_x64{
  public:
   void encode_x64(std::vector <uint32_t> &input,
@@ -25,7 +25,7 @@ class golomb_rice:public bitalignedcommon,public intermediate_x64{
                   std::vector<uint32_t> &output,
                   uint64_t &recoversize){
     {
-      bit_vector_handler handler(output);
+      bit_vector_handler handler(input);
       output.resize(recoversize);
     }
   }

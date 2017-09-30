@@ -5,7 +5,7 @@ namespace textsim {
 class GCIndexer{
  public:
   // Get all the contexts of the given bigram string in the fourgram corpus.
-  virtual std::vector <uint32_t> get_contexts(std::string targetphrase) = 0;
+  virtual std::vector <uint64_t> get_contexts(std::string targetphrase) = 0;
 };
 
 }  // namespace phsim

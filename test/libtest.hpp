@@ -29,6 +29,8 @@
 
 #include "util/bit_vector.hpp"
 
+#include "intersection/galloping.hpp"
+
 #include <memory>
 #include <iomanip>
 #include <time.h>
@@ -593,7 +595,7 @@ void test_block_6()
 }
 
 void test_golombrice_dummy(){
-  textsim::golomb_rice codec;
+  textsim::golomb_rice<4> codec;
   std::vector<uint32_t> data =
       {
           1,2,3,4,5
@@ -613,7 +615,7 @@ void test_golombrice_dummy(){
 
 void test_golombrice()
 {
-  textsim::golomb_rice codec;
+  textsim::golomb_rice<4> codec;
   std::vector<uint32_t> data =
       {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
        1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
@@ -701,6 +703,25 @@ void test_variant_gb_actual()
   }
 };
 
+void test_variantgb_lessthan4(){
+   textsim::variantgb codec;
+  std::vector<uint32_t> data =
+      {
+          1,2
+      };
+  std::vector<uint8_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t expectednum = data.size();
+  size_t originalsize = expectednum;
+  size_t intermediatesize = originalsize;
+  codec.encode_x8(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x8(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    assert(data[i] == recover[i]);
+  }
+}
+
 void test_variant_g8iu_actual()
 {
   FastPForLib::VarIntG8IU codec;
@@ -732,6 +753,31 @@ void test_variant_g8cu_actual(){
 
 };
 };
+
+namespace intersection{
+void test_intersection_galloping(){
+  textsim::gallop interstc;
+  std::vector<std::pair<uint32_t, uint64_t>> posting1 = {{1,1},{2,3},{4,5},{7,8},{9,10},{11,12},{13,5},{14,12}};
+  std::vector<std::pair<uint32_t, uint64_t>> posting2 = {{2,3},{4,5},{7,8},{9,10},{13,12}};
+  std::vector<std::pair<uint32_t, uint64_t>> posting3;
+  std::vector<std::pair<uint32_t, uint64_t>> posting4;
+
+  interstc.intersect(posting1,posting2,posting3,posting4);
+  for(auto i : posting3){
+    std::cout<<i.first<<"--"<<i.second<<"\t";
+  };
+
+  std::cout<<std::endl;
+  for(auto i : posting4){
+    std::cout<<i.first<<"--"<<i.second<<"\t";
+  }
+  std::cout<<std::endl;
+};
+
+void test_intersection_simdgalloping(){
+
+};
+}
 
 namespace framebased
 {

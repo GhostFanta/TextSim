@@ -17,6 +17,8 @@
 namespace textsim {
 namespace common {
 const static size_t UNISIZE = 4210037;
+const static size_t OTHERUNISIZE = 2906439;
+const static size_t ALLUNISIZE = 7116476;
 const static size_t BISIZE = 41296941;
 const static size_t CONSIZE = 150406843;
 const static size_t IDWIDTH = 23;
@@ -27,8 +29,7 @@ const static size_t FREQMAXWIDTH = 37;
 const static size_t FRONTIERBIT = 19;
 const static size_t FREQSIZEUNIBI = 394061;
 const static size_t ESCAPEARRAYSIZE = 32;
-}
-
-}
+};
+};
 
 #endif //TEXTSIM_COMMON_HPP
