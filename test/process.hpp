@@ -8,6 +8,18 @@
 #include "gfindexer/naivegfindexer.hpp"
 #include "gfindexer/compactgfindexer.hpp"
 #include "gfindexer/alignedgfindexer.hpp"
+#include "interfaces/stopwords.hpp"
+#include "stopwords/unorderedstopwords.hpp"
+
+#include "interfaces/intermediate_x8.hpp"
+#include "interfaces/intermediate_x32.hpp"
+#include "interfaces/intermediate_x64.hpp"
+
+#include "bytecodec/variantgb.hpp"
+#include "bytecodec/variantbyte.hpp"
+
+#include "interfaces/gcindexer.hpp"
+#include "gcindexer/trigram/invertedgctri.hpp"
 
 namespace process {
 
@@ -32,6 +44,10 @@ std::string contextcontentpath = "/raid6/workspace/zichu/rakibng/allContextsPure
 std::string contextmphpath = "/raid6/workspace/zichu/rakibng/serialization/contextThumnails.mph";
 std::string contextserializationpath = "/raid6/workspace/zichu/rakibng/serialization/conindexerserialization";
 std::string contextthumbnailpath = "/raid6/workspace/zichu/rakibng/serialization/contextThumnails";
+
+std::vector<std::string> trigramcontextarrayvec = {
+    "/raid6/workspace/zichu/rakibng/3gm/digital"
+};
 
 std::string stopwordfile = "/raid6/workspace/zichu/phsim/PhSim/resources/stopwords";
 
@@ -545,6 +561,142 @@ void test_aligned_gfindexer() {
 };
 
 void test_compact_gfindexer() {
+  std::vector<std::string> keysetpathvec;
+  keysetpathvec.push_back("/raid6/workspace/zichu/hadoopkeyset/stemmedversion/1gms/1gmfromallstem");
+
+  std::string unifile = unigramserializationpath;
+  std::string bifile = bigramserializationpath;
+  std::string confile = contextserializationpath;
+  std::string unimphpath = opunigrammphpath;
+  std::string bimphpath = bigrammphpath;
+  std::string conmphpath = contextmphpath;
+  std::string bigramspath = bigramcontentpath;
+  std::string contextspath = contextcontentpath;
+
+  textsim::CombineRangeIndexer *combineindexer = new textsim::CombineRangeIndexer(unimphpath, bimphpath);
+  combineindexer->initcmphbi(bimphpath);
+  combineindexer->initcmphcon(conmphpath);
+  combineindexer->load(unifile, bifile, confile);
+
+  std::cout << "indexer load finish" << std::endl;
+
+
+  auto t1 = std::chrono::high_resolution_clock::now();
+  std::string unipath =unigramwithfreqpath;
+  std::string bipath = bigramwithfreqpath;
+  textsim::CompressedOptimizedGFIndexer *gfindexer = new textsim::CompressedOptimizedGFIndexer(combineindexer);
+  gfindexer->inituni(unipath);
+  std::cout << "load uni finished" << std::endl;
+  gfindexer->initbi(bipath);
+  std::cout << "load bi finished" << std::endl;
+  auto t2 = std::chrono::high_resolution_clock::now();
+  gfindexer->clear();
+  std::cout << "clear" << std::endl;
+
+  std::cout << "gfindexer load finish\t" << std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count()
+            << std::endl;
+
+  size_t match = 0;
+  size_t mismatch = 0;
+  std::ifstream sourceuni;
+  std::ifstream sourcebi;
+
+  sourceuni.open(unipath, std::ios::in);
+  sourcebi.open(bipath, std::ios::in);
+
+  if (!sourceuni.is_open() || !sourcebi.is_open()) {
+    throw std::runtime_error("unipath or bipath not valid");
+  };
+
+  while (!sourceuni.eof()) {
+    std::string current;
+    std::getline(sourceuni, current);
+    if (current.length() < 1) {
+      break;
+    }
+    std::string ngram;
+    unsigned long freq;
+    textsim::tool::split_string_into_gram_freq(current, ngram, freq);
+    std::cout << "ngram is\t" << ngram << std::endl;
+    if (gfindexer->get_freq(ngram) == freq) {
+      ++match;
+    } else {
+      ++mismatch;
+    }
+  };
+
+  while (!sourcebi.eof()) {
+    std::string current;
+    std::getline(sourcebi, current);
+    if (current.length() < 1) {
+      break;
+    }
+    std::string ngram;
+    unsigned long freq;
+    textsim::tool::split_string_into_gram_freq(current, ngram, freq);
+    std::cout << "ngram is\t" << ngram << std::endl;
+    if (gfindexer->get_freq(ngram) == freq) {
+      ++match;
+    } else {
+      ++mismatch;
+    }
+  };
+  std::cout << "matches: \t" << match << std::endl;
+  std::cout << "mismatch: \t" << mismatch << std::endl;
+}
+
+void test_invertedtri_gcindexer(){
+  std::vector<std::string> keysetpathvec;
+  keysetpathvec.push_back("/raid6/workspace/zichu/hadoopkeyset/stemmedversion/1gms/1gmfromallstem");
+
+  std::string unifile = unigramserializationpath;
+  std::string bifile = bigramserializationpath;
+  std::string confile = contextserializationpath;
+  std::string unimphpath = opunigrammphpath;
+  std::string bimphpath = bigrammphpath;
+  std::string conmphpath = contextmphpath;
+  std::string bigramspath = bigramcontentpath;
+  std::string contextspath = contextcontentpath;
+
+  textsim::CombineRangeIndexer *combineindexer = new textsim::CombineRangeIndexer(unimphpath, bimphpath);
+  combineindexer->initcmphbi(bimphpath);
+  combineindexer->initcmphcon(conmphpath);
+  combineindexer->load(unifile, bifile, confile);
+
+  std::cout << "indexer load finish" << std::endl;
+
+
+  auto t1 = std::chrono::high_resolution_clock::now();
+  std::string unipath =unigramwithfreqpath;
+  std::string bipath = bigramwithfreqpath;
+  textsim::CompressedOptimizedGFIndexer *gfindexer = new textsim::CompressedOptimizedGFIndexer(combineindexer);
+  gfindexer->inituni(unipath);
+  std::cout << "load uni finished" << std::endl;
+  gfindexer->initbi(bipath);
+  std::cout << "load bi finished" << std::endl;
+  auto t2 = std::chrono::high_resolution_clock::now();
+  gfindexer->clear();
+  std::cout << "clear" << std::endl;
+
+  std::cout << "gfindexer load finish\t" << std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count()
+            << std::endl;
+
+  textsim::stopwords *stopwords = new textsim::stopwordsdic(stopwordfile);
+  textsim::intermediate_x8 *codec = new textsim::vbyte();
+
+  textsim::InvertedGCIndexerTri_x8 *gcindexer = new textsim::InvertedGCIndexerTri_x8(combineindexer,codec,stopwords);
+
+  gcindexer->initchunks(trigramcontextarrayvec);
+
+  gcindexer->converttodelta();
+
+  gcindexer->compress();
+
+  gcindexer->clearcache();
+
+  std::vector<std::pair<uint64_t,uint64_t>> contextarray;
+
+//  gcindexer->get_contexts("aaaac");
 
 }
 

@@ -2,6 +2,7 @@
 #define TEXTSIM_SIMPLE8B_HPP
 
 #include "common.hpp"
+#include "simple8b.hpp"
 #include "interfaces/intermediate_x32.hpp"
 
 namespace textsim{

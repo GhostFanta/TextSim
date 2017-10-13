@@ -1,11 +1,14 @@
 #ifndef TEXTSIM_GCINDEXER_HPP
 #define TEXTSIM_GCINDEXER_HPP
-namespace textsim {
 
+#include "common.hpp"
+
+namespace textsim {
 class GCIndexer{
  public:
   // Get all the contexts of the given bigram string in the fourgram corpus.
-  virtual std::vector <uint64_t> get_contexts(std::string targetphrase) = 0;
+  virtual void get_contexts(std::string targetphrase,
+                       std::vector<std::pair<uint64_t,uint64_t>> &contextarray) = 0;
 };
 
 }  // namespace phsim

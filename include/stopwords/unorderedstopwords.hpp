@@ -11,7 +11,7 @@ class stopwordsdic:public stopwords{
  public:
   stopwordsdic(std::string stopwordsfile){
     std::ifstream source;
-    source.open();
+    source.open(stopwordsfile);
 
     if(!source.is_open()){
       throw std::runtime_error("stopword source not valid");

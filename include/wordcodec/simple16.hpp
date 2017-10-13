@@ -2,6 +2,7 @@
 #define TEXTSIM_SIMPLE16_HPP
 
 #include "common.hpp"
+#include "simple16.h"
 #include "interfaces/intermediate_x64.hpp"
 
 namespace textsim{

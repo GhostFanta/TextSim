@@ -3,6 +3,7 @@
 
 #include "cmph.h"
 #include <string.h>
+#include <chrono>
 
 #include "memutil.h"
 
@@ -263,6 +264,35 @@ void test_read_bits_reverse(){
   std::cout<<"----------------read bits reverse pass---------------"<<std::endl;
 }
 };
+
+namespace snippet
+{
+
+void test_sort_pair(){
+
+  struct paircomparator{
+    bool operator()(const std::pair<uint64_t ,uint64_t > &a, const std::pair<uint64_t,uint64_t> &b){
+      return a.first < b.first;
+    }
+  };
+
+  std::vector<std::pair<uint64_t, uint64_t>> container;
+  container.push_back(std::pair<uint64_t,uint64_t>({1,2}));
+  container.push_back(std::pair<uint64_t,uint64_t>({3,2}));
+  container.push_back(std::pair<uint64_t,uint64_t>({9,2}));
+  container.push_back(std::pair<uint64_t,uint64_t>({2,2}));
+  container.push_back(std::pair<uint64_t,uint64_t>({31,2}));
+  container.push_back(std::pair<uint64_t,uint64_t>({21,2}));
+  container.push_back(std::pair<uint64_t,uint64_t>({4,2}));
+
+  std::sort(container.begin(),container.end(),paircomparator());
+  for(auto i : container){
+    std::cout<<i.first<<"\t"<<i.second<<std::endl;
+  }
+
+}
+
+}
 
 namespace variantbit
 {
@@ -754,7 +784,8 @@ void test_variant_g8cu_actual(){
 };
 };
 
-namespace intersection{
+namespace intersection
+{
 void test_intersection_galloping(){
   textsim::gallop interstc;
   std::vector<std::pair<uint32_t, uint64_t>> posting1 = {{1,1},{2,3},{4,5},{7,8},{9,10},{11,12},{13,5},{14,12}};
@@ -914,6 +945,30 @@ void test_simple16_actual()
   recoverdata.shrink_to_fit();
 }
 
+void test_simple16_wrapped(){
+  std::vector<uint32_t> data = {
+      1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+      1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+      1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  textsim::simple16codec codec;
+  size_t originsize = data.size();
+  size_t intermediatesize = originsize;
+  std::vector<uint32_t> intermediate;
+  intermediate.resize(intermediatesize);
+  std::vector<uint32_t> recoverdata;
+  recoverdata.resize(originsize + 1024);
+
+  codec.encode_x32(data, originsize, intermediate, intermediatesize);
+  codec.decode_x32(intermediate, intermediatesize, recoverdata, originsize);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    std::cout << "data[" << i << "]\t" << data[i] << "\t";
+    std::cout << "recoverdata[" << i << "]\t" << recoverdata[i] << std::endl;
+    assert(recoverdata[i] == data[i]);
+  }
+}
+
 // Passes
 void test_simple9_dummy()
 {
@@ -962,7 +1017,284 @@ void test_simple9_actual()
     assert(recoverdata[i] == data[i]);
   }
 };
+
+
+void test_simple9_wrapped(){
+ std::vector<uint32_t> data = {
+      1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+      1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+      1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  textsim::simple9codec codec;
+  size_t originsize = data.size();
+  size_t intermediatesize = originsize;
+  std::vector<uint32_t> intermediate;
+  intermediate.resize(intermediatesize);
+  std::vector<uint32_t> recoverdata;
+  recoverdata.resize(originsize + 1024);
+
+  codec.encode_x32(data, originsize, intermediate, intermediatesize);
+  codec.decode_x32(intermediate, intermediatesize, recoverdata, originsize);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    std::cout << "data[" << i << "]\t" << data[i] << "\t";
+    std::cout << "recoverdata[" << i << "]\t" << recoverdata[i] << std::endl;
+    assert(recoverdata[i] == data[i]);
+  }
+}
 };
+
+
+
+namespace codecspeed
+{
+void test_variantbyte(){
+  textsim::elias_delta codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266};
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x64(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+  }
+}
+
+void test_variantgb(){
+  textsim::elias_delta codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266};
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x64(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+  }
+}
+
+void test_simple8b(){
+  textsim::elias_delta codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266};
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x64(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+  }
+}
+
+void test_simple9(){
+  textsim::elias_delta codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266};
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x64(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+  }
+}
+
+void test_simple_16(){
+  textsim::elias_delta codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266};
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x64(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+  }
+}
+
+void test_elias_gamma(){
+  textsim::elias_delta codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266};
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x64(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+  }
+}
+
+void test_elias_delta(){
+  textsim::elias_delta codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266};
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x64(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+  }
+}
+
+void test_elias_omega(){
+  textsim::elias_delta codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266};
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x64(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+  }
+}
+
+void test_block(){
+  textsim::elias_delta codec;
+  std::vector<uint32_t> data =
+      {1, 211, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 221, 1, 222, 1, 223, 1, 224, 1, 225, 1, 226, 1, 231, 1, 232,
+       1, 233, 1, 234, 1, 235, 1, 236, 1, 241, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 251, 1, 252, 1, 253, 1, 254,
+       1, 255, 1, 256, 1, 261, 1, 262, 1, 263, 1, 264, 1, 265, 1, 266};
+  std::vector<uint64_t> intermediate;
+  std::vector<uint32_t> recover;
+  size_t originalsize = data.size();
+  size_t expectednum = data.size();
+  size_t intermediatesize = intermediate.size();
+  codec.encode_x64(data, originalsize, intermediate, intermediatesize);
+  codec.decode_x64(intermediate, intermediatesize, recover, expectednum);
+  for (size_t i = 0; i < data.size(); i++)
+  {
+    ASSERT(data[i] == recover[i], "member " + std::to_string(i) + " not equal");
+  }
+}
+
+void test_speed(){
+  std::cout<<"1000000 elias gamma"<<std::endl;
+  auto t1 = std::chrono::high_resolution_clock::now();
+  for(size_t i = 0 ; i < 1000000 ; i++){
+    test_elias_gamma();
+  }
+  auto t2 = std::chrono::high_resolution_clock::now();
+  std::cout<<std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count()<<std::endl;
+
+  std::cout<<"1000000 elias omega"<<std::endl;
+  t1 = std::chrono::high_resolution_clock::now();
+  for(size_t i = 0 ; i < 1000000 ; i++){
+    test_elias_omega();
+  }
+  t2 = std::chrono::high_resolution_clock::now();
+  std::cout<<std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count()<<std::endl;
+
+  std::cout<<"1000000 elias delta"<<std::endl;
+  t1 = std::chrono::high_resolution_clock::now();
+  for(size_t i = 0 ; i < 1000000 ; i++){
+    test_elias_delta();
+  }
+  t2 = std::chrono::high_resolution_clock::now();
+  std::cout<<std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count()<<std::endl;
+
+  std::cout<<"1000000 block"<<std::endl;
+  t1 = std::chrono::high_resolution_clock::now();
+  for(size_t i = 0 ; i < 1000000 ; i++){
+    test_block();
+  }
+  t2 = std::chrono::high_resolution_clock::now();
+  std::cout<<std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count()<<std::endl;
+
+
+  std::cout<<"1000000 vb"<<std::endl;
+  t1 = std::chrono::high_resolution_clock::now();
+  for(size_t i = 0 ; i < 1000000 ; i++){
+    test_variantbyte();
+  }
+  t2 = std::chrono::high_resolution_clock::now();
+  std::cout<<std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count()<<std::endl;
+
+  std::cout<<"1000000 vgb"<<std::endl;
+  t1 = std::chrono::high_resolution_clock::now();
+  for(size_t i = 0 ; i < 1000000 ; i++){
+    test_variantgb();
+  }
+  t2 = std::chrono::high_resolution_clock::now();
+  std::cout<<std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count()<<std::endl;
+
+  std::cout<<"1000000 simple9"<<std::endl;
+  t1 = std::chrono::high_resolution_clock::now();
+  for(size_t i = 0 ; i < 1000000 ; i++){
+    test_simple9();
+  }
+  t2 = std::chrono::high_resolution_clock::now();
+  std::cout<<std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count()<<std::endl;
+
+  std::cout<<"1000000 simple8b"<<std::endl;
+  t1 = std::chrono::high_resolution_clock::now();
+  for(size_t i = 0 ; i < 1000000 ; i++){
+    test_simple8b();
+  }
+  t2 = std::chrono::high_resolution_clock::now();
+  std::cout<<std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count()<<std::endl;
+
+  std::cout<<"1000000 simple16"<<std::endl;
+  t1 = std::chrono::high_resolution_clock::now();
+  for(size_t i = 0 ; i < 1000000 ; i++){
+    test_simple_16();
+  }
+  t2 = std::chrono::high_resolution_clock::now();
+  std::cout<<std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count()<<std::endl;
+}
+
+}
 }
 
 #endif //TEXTSIM_LIBTEST_HPP
