@@ -50,14 +50,14 @@ class gallop:public intersection{
         auto index = this->gallop_search(posting1,i.first);
         if(index != std::numeric_limits<uint64_t>::max()){
           result1.push_back(posting1[index]);
-          result2.push_back(posting2[index]);
+          result2.push_back(i);
         }
       };
     }else{
       for(auto i : posting1){
         auto index = this->gallop_search(posting2,i.first);
-        if(!index != std::numeric_limits<uint64_t>::max()){
-          result1.push_back(posting1[index]);
+        if(index != std::numeric_limits<uint64_t>::max()){
+          result1.push_back(i);
           result2.push_back(posting2[index]);
         };
       };

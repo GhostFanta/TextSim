@@ -14,17 +14,9 @@
     <list default="true" id="abcf7343-b589-4958-acc1-be4007725379" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/FastPFor" afterPath="$PROJECT_DIR$/lib/FastPFor" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/gcindexer/fourgram/invertedgcfour.hpp" afterPath="$PROJECT_DIR$/include/gcindexer/fourgram/invertedgcfour.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/gcindexer/trigram/invertedgctri.hpp" afterPath="$PROJECT_DIR$/include/gcindexer/trigram/invertedgctri.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/interfaces/gcindexer.hpp" afterPath="$PROJECT_DIR$/include/interfaces/gcindexer.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/phrasesim/rakibsim.hpp" afterPath="$PROJECT_DIR$/include/phrasesim/rakibsim.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/stopwords/unorderedstopwords.hpp" afterPath="$PROJECT_DIR$/include/stopwords/unorderedstopwords.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/tool.hpp" afterPath="$PROJECT_DIR$/include/tool.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/wordcodec/simple16.hpp" afterPath="$PROJECT_DIR$/include/wordcodec/simple16.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/wordcodec/simple8b.hpp" afterPath="$PROJECT_DIR$/include/wordcodec/simple8b.hpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/intersection/galloping.hpp" afterPath="$PROJECT_DIR$/include/intersection/galloping.hpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.cpp" afterPath="$PROJECT_DIR$/src/main.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/libtest.hpp" afterPath="$PROJECT_DIR$/test/libtest.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/process.hpp" afterPath="$PROJECT_DIR$/test/process.hpp" />
     </list>
     <ignored path="TextSim.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,26 +37,14 @@
     <favorites_list name="TextSim" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.34573305">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="simple8b.hpp" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/include/wordcodec/simple8b.hpp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="144">
-                  <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-                  <folding>
-                    <element signature="e#59#80#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="libtest.hpp" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/test/libtest.hpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="401">
-                  <caret line="1019" column="0" lean-forward="false" selection-start-line="1019" selection-start-column="0" selection-end-line="1019" selection-end-column="0" />
+                <state relative-caret-position="540">
+                  <caret line="1045" column="0" lean-forward="false" selection-start-line="1045" selection-start-column="0" selection-end-line="1045" selection-end-column="0" />
                   <folding>
                     <element signature="e#931#2097#0" expanded="false" />
                     <element signature="e#2100#7920#0" expanded="false" />
@@ -84,7 +64,9 @@
                     <element signature="e#27755#27790#0" expanded="false" />
                     <element signature="e#27796#28511#0" expanded="false" />
                     <element signature="e#28513#29659#0" expanded="false" />
-                    <element signature="e#37607#48243#0" expanded="false" />
+                    <element signature="e#29661#37602#0" expanded="false" />
+                    <element signature="e#29683#30568#0" expanded="false" />
+                    <element signature="e#37605#48241#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -94,41 +76,31 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="libtest.hpp" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/test/libtest.hpp">
+          <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="18378">
-                  <caret line="1021" column="20" lean-forward="false" selection-start-line="1021" selection-start-column="20" selection-end-line="1021" selection-end-column="20" />
-                  <folding>
-                    <element signature="e#931#2097#0" expanded="false" />
-                    <element signature="e#2100#7920#0" expanded="false" />
-                    <element signature="e#7923#8769#0" expanded="false" />
-                    <element signature="e#7944#8766#0" expanded="false" />
-                    <element signature="e#8771#23227#0" expanded="false" />
-                    <element signature="e#8795#9437#0" expanded="false" />
-                    <element signature="e#9439#10074#0" expanded="false" />
-                    <element signature="e#11097#12048#0" expanded="false" />
-                    <element signature="e#13581#14164#0" expanded="false" />
-                    <element signature="e#14166#15035#0" expanded="false" />
-                    <element signature="e#15037#16107#0" expanded="false" />
-                    <element signature="e#16109#17235#0" expanded="false" />
-                    <element signature="e#17238#18364#0" expanded="false" />
-                    <element signature="e#23229#27793#0" expanded="false" />
-                    <element signature="e#26679#27752#0" expanded="false" />
-                    <element signature="e#27755#27790#0" expanded="false" />
-                    <element signature="e#27796#28511#0" expanded="false" />
-                    <element signature="e#28513#29659#0" expanded="false" />
-                    <element signature="e#37607#48243#0" expanded="false" />
-                  </folding>
+                <state relative-caret-position="648">
+                  <caret line="36" column="28" lean-forward="false" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
+                  <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main.cpp">
+          <file leaf-file-name="rakibsim.hpp" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/include/phrasesim/rakibsim.hpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="468">
-                  <caret line="29" column="34" lean-forward="false" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
+                <state relative-caret-position="365">
+                  <caret line="33" column="31" lean-forward="false" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="galloping.hpp" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/include/intersection/galloping.hpp">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="220">
+                  <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -213,8 +185,8 @@
         <option value="$PROJECT_DIR$/include/stopwords/unorderedstopwords.hpp" />
         <option value="$PROJECT_DIR$/include/wordcodec/simple16.hpp" />
         <option value="$PROJECT_DIR$/include/wordcodec/simple8b.hpp" />
-        <option value="$PROJECT_DIR$/src/main.cpp" />
         <option value="$PROJECT_DIR$/test/libtest.hpp" />
+        <option value="$PROJECT_DIR$/src/main.cpp" />
       </list>
     </option>
   </component>
@@ -225,10 +197,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="-4" />
-    <option name="width" value="1920" />
-    <option name="height" value="1084" />
+  <component name="ProjectFrameBounds" extendedState="4">
+    <option name="y" value="24" />
+    <option name="width" value="960" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -250,7 +222,7 @@
     <property name="last_opened_file_path" value="$USER_HOME$/cgm/phsim/TextSim" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="$USER_HOME$/.nvm/versions/node/v8.5.0/bin/node" />
-    <property name="SearchEverywhereHistoryKey" value="main.cpp&#9;FILE&#9;file:///home/zichu/Git/TextSim/src/main.cpp&#10;libtest&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/libtest.hpp&#10;simple&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/wordcodec/simple8b.hpp&#10;simple8b&#9;FILE&#9;file:///home/zichu/Git/TextSim/lib/FastPFor/headers/simple8b.h&#10;simp&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/wordcodec/simple16.hpp&#10;simple9.hp&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/wordcodec/simple9.hpp&#10;libt&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/libtest.hpp&#10;tool.h&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/tool.hpp&#10;main&#9;FILE&#9;file:///home/zichu/Git/TextSim/src/main.cpp&#10;intersection/&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/intersection&#10;test_variantby&#9;null&#9;null&#10;logger&#9;null&#9;null&#10;rakibsim&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/phrasesim/rakibsim.hpp&#10;phrase&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/interfaces/phrasesim.hpp&#10;process&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/process.hpp&#10;variantgb&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/bytecodec/variantgb.hpp&#10;proc&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/process.hpp&#10;main.cp&#9;FILE&#9;file:///home/zichu/Git/TextSim/src/main.cpp&#10;libtes&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/libtest.hpp&#10;tri&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gcindexer/trigram/invertedgctri.hpp&#10;four&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gcindexer/fourgram/invertedgcfour.hpp&#10;gcind&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/interfaces/gcindexer.hpp&#10;invertedgcf&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gcindexer/fourgram/invertedgcfour.hpp&#10;invertedgct&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gcindexer/trigram/invertedgctri.hpp&#10;naive&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gcindexer/trigram/naivegctri.hpp&#10;gcfou&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gcindexer/fourgram/invertedgcfour.hpp&#10;stopwor&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/interfaces/stopwords.hpp&#10;invertedgctr&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gcindexer/trigram/invertedgctri.hpp&#10;lib&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/libtest.hpp&#10;ga&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/intersection/galloping.hpp&#10;gall&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/intersection/galloping.hpp&#10;variantg&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/bytecodec/variantg8iu.hpp&#10;gc&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gcindexer/fourgram/invertedgcfour.hpp&#10;process.h&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/process.hpp&#10;nai&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gfindexer/naivegfindexer.hpp&#10;naivein&#9;null&#9;null&#10;pro&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/process.hpp&#10;common&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/common.hpp&#10;trigram&#9;null&#9;null&#10;iu&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/bytecodec/variantg8iu.hpp&#10;bi&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/util/bit_vector.hpp&#10;wor&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/util/wordwriter.hpp&#10;vgb&#9;null&#9;null&#10;gb&#9;null&#9;null&#10;bit&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/util/bit_vector.hpp&#10;g8cu&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/bytecodec/variantg8cu.hpp&#10;bitv&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/util/bit_vector.hpp&#10;util&#9;FILE&#9;file:///home/zichu/Git/TextSim/lib/FastPFor/headers/util.h&#10;PFor&#9;null&#9;null&#10;Vi&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="galloping.hpp&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/intersection/galloping.hpp&#10;rakib&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/phrasesim/rakibsim.hpp&#10;main.cpp&#9;FILE&#9;file:///home/zichu/Git/TextSim/src/main.cpp&#10;libtest&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/libtest.hpp&#10;simple&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/wordcodec/simple8b.hpp&#10;simple8b&#9;FILE&#9;file:///home/zichu/Git/TextSim/lib/FastPFor/headers/simple8b.h&#10;simp&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/wordcodec/simple16.hpp&#10;simple9.hp&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/wordcodec/simple9.hpp&#10;libt&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/libtest.hpp&#10;tool.h&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/tool.hpp&#10;main&#9;FILE&#9;file:///home/zichu/Git/TextSim/src/main.cpp&#10;intersection/&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/intersection&#10;test_variantby&#9;null&#9;null&#10;logger&#9;null&#9;null&#10;rakibsim&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/phrasesim/rakibsim.hpp&#10;phrase&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/interfaces/phrasesim.hpp&#10;process&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/process.hpp&#10;variantgb&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/bytecodec/variantgb.hpp&#10;proc&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/process.hpp&#10;main.cp&#9;FILE&#9;file:///home/zichu/Git/TextSim/src/main.cpp&#10;libtes&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/libtest.hpp&#10;tri&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gcindexer/trigram/invertedgctri.hpp&#10;four&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gcindexer/fourgram/invertedgcfour.hpp&#10;gcind&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/interfaces/gcindexer.hpp&#10;invertedgcf&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gcindexer/fourgram/invertedgcfour.hpp&#10;invertedgct&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gcindexer/trigram/invertedgctri.hpp&#10;naive&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gcindexer/trigram/naivegctri.hpp&#10;gcfou&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gcindexer/fourgram/invertedgcfour.hpp&#10;stopwor&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/interfaces/stopwords.hpp&#10;invertedgctr&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gcindexer/trigram/invertedgctri.hpp&#10;lib&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/libtest.hpp&#10;ga&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/intersection/galloping.hpp&#10;gall&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/intersection/galloping.hpp&#10;variantg&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/bytecodec/variantg8iu.hpp&#10;gc&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gcindexer/fourgram/invertedgcfour.hpp&#10;process.h&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/process.hpp&#10;nai&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/gfindexer/naivegfindexer.hpp&#10;naivein&#9;null&#9;null&#10;pro&#9;FILE&#9;file:///home/zichu/Git/TextSim/test/process.hpp&#10;common&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/common.hpp&#10;trigram&#9;null&#9;null&#10;iu&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/bytecodec/variantg8iu.hpp&#10;bi&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/util/bit_vector.hpp&#10;wor&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/util/wordwriter.hpp&#10;vgb&#9;null&#9;null&#10;gb&#9;null&#9;null&#10;bit&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/util/bit_vector.hpp&#10;g8cu&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/bytecodec/variantg8cu.hpp&#10;bitv&#9;FILE&#9;file:///home/zichu/Git/TextSim/include/util/bit_vector.hpp&#10;util&#9;FILE&#9;file:///home/zichu/Git/TextSim/lib/FastPFor/headers/util.h" />
     <property name="settings.editor.selected.configurable" value="com.maddyhome.idea.vim.ui.VimEmulationConfigurable" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/.gitignore" />
   </component>
@@ -512,7 +484,8 @@
       <workItem from="1507656751175" duration="1892000" />
       <workItem from="1507729438341" duration="3290000" />
       <workItem from="1507840729816" duration="6000" />
-      <workItem from="1507917621014" duration="6000" />
+      <workItem from="1507917621014" duration="1325000" />
+      <workItem from="1508100028270" duration="14000" />
     </task>
     <task id="LOCAL-00001" summary="init repo">
       <created>1505780269945</created>
@@ -591,11 +564,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506786664511</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="galloping intersection finished">
+      <created>1507917647215</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1507917647215</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="324576000" />
+    <option name="totallyTimeSpent" value="325909000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -607,21 +587,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-4" width="1920" height="1084" extended-state="6" />
+    <frame x="0" y="24" width="960" height="1056" extended-state="4" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901832" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901832" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21989529" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901832" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1892779" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.39940387" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="960" y="552" width="960" height="528" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17395945" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901832" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -699,7 +679,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="29" />
+      <option name="time" value="31" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -861,13 +841,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/intersection/galloping.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/c++/6/bits/stl_vector.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -952,13 +925,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/phrasesim/rakibsim.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="653">
-          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/include/tool.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2880">
@@ -1026,24 +992,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-          <folding>
-            <element signature="e#59#80#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="29" column="34" lean-forward="false" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/libtest.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="1019" column="0" lean-forward="false" selection-start-line="1019" selection-start-column="0" selection-end-line="1019" selection-end-column="0" />
+        <state relative-caret-position="540">
+          <caret line="1045" column="0" lean-forward="false" selection-start-line="1045" selection-start-column="0" selection-end-line="1045" selection-end-column="0" />
           <folding>
             <element signature="e#931#2097#0" expanded="false" />
             <element signature="e#2100#7920#0" expanded="false" />
@@ -1063,8 +1018,34 @@
             <element signature="e#27755#27790#0" expanded="false" />
             <element signature="e#27796#28511#0" expanded="false" />
             <element signature="e#28513#29659#0" expanded="false" />
-            <element signature="e#37607#48243#0" expanded="false" />
+            <element signature="e#29661#37602#0" expanded="false" />
+            <element signature="e#29683#30568#0" expanded="false" />
+            <element signature="e#37605#48241#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="36" column="28" lean-forward="false" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/phrasesim/rakibsim.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="33" column="31" lean-forward="false" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/intersection/galloping.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

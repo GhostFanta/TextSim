@@ -1044,8 +1044,6 @@ void test_simple9_wrapped(){
 }
 };
 
-
-
 namespace codecspeed
 {
 void test_variantbyte(){
