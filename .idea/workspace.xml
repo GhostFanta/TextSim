@@ -14,9 +14,6 @@
     <list default="true" id="abcf7343-b589-4958-acc1-be4007725379" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/FastPFor" afterPath="$PROJECT_DIR$/lib/FastPFor" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/intersection/galloping.hpp" afterPath="$PROJECT_DIR$/include/intersection/galloping.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.cpp" afterPath="$PROJECT_DIR$/src/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/libtest.hpp" afterPath="$PROJECT_DIR$/test/libtest.hpp" />
     </list>
     <ignored path="TextSim.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -485,7 +482,7 @@
       <workItem from="1507729438341" duration="3290000" />
       <workItem from="1507840729816" duration="6000" />
       <workItem from="1507917621014" duration="1325000" />
-      <workItem from="1508100028270" duration="14000" />
+      <workItem from="1508100028270" duration="49000" />
     </task>
     <task id="LOCAL-00001" summary="init repo">
       <created>1505780269945</created>
@@ -571,11 +568,18 @@
       <option name="project" value="LOCAL" />
       <updated>1507917647215</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="fix bug in galloping">
+      <created>1508100064405</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1508100064405</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="325909000" />
+    <option name="totallyTimeSpent" value="325944000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -665,7 +669,8 @@
     <MESSAGE value="fix bugs in bit_vector_handler: read_bits: right shift more than bits will lead to unexpected effect." />
     <MESSAGE value="delta finished" />
     <MESSAGE value="galloping intersection finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="galloping intersection finished" />
+    <MESSAGE value="fix bug in galloping" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bug in galloping" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
