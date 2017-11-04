@@ -55,10 +55,19 @@ namespace textsim{
 namespace logger{
 static void showdata(const __uint32_t *data) {
   for (int i = 0; i < 4; i++) {
-    printf("\t%d\t", data[i]);
+    printf("\t%x ", data[i]);
   }
-  std::cout << std::endl;
 }
+
+//static void showm128_8_hex(__m128i data){
+//  const uint32_t *temp = (uint32_t*) malloc(sizeof(uint32_t)*4);
+//  _mm_storeu_si128((__m128i*)temp,data);
+//  for(int i = 0 ; i < 4 ; i++){
+//    for(int j = 0 ; j < 4 ; j++){
+//      printf("\t%x ",data[i] & (((0xff) << (8 * j))>>(8 * j)));
+//    }
+//  }
+//}
 
 static void showdata(__m128i data) {
   const uint32_t *temp = (uint32_t *) malloc(sizeof(uint32_t) * 4);

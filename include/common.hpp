@@ -13,6 +13,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <chrono>
+#include <immintrin.h>
 
 namespace textsim {
 namespace common {

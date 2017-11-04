@@ -12,13 +12,13 @@ class gallop:public intersection{
     while(left <= right) {
       mid = left + (right - left) / 2;
       if (input[mid].first < val) {
-        std::cout<<"left = mid + 1"<<std::endl;
+//        std::cout<<"left = mid + 1"<<std::endl;
         left = mid + 1;
       } else if (input[mid].first > val) {
-        std::cout<<"right = mid - 1"<<std::endl;
+//        std::cout<<"right = mid - 1"<<std::endl;
         right = mid - 1;
       } else {
-        std::cout<<"get pos\t"<<mid<<std::endl;
+//        std::cout<<"get pos\t"<<mid<<std::endl;
         return mid;
       };
     }

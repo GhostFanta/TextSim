@@ -105,8 +105,6 @@ namespace textsim{
             size_t eleindex = 0;
             uint8_t descriptor;
 
-            output.resize(expectedelenum);
-
             for (size_t index = 0; index < input.size();) {
 
                 // Read in one descriptor
@@ -167,7 +165,8 @@ namespace textsim{
                             ++eleindex;
                             break;
                     }
-                    if (eleindex > expectedelenum) {
+                    if (eleindex >= expectedelenum) {
+                        std::cout<<"break\t"<<eleindex<<std::endl;
                         break;
                     }
                 }

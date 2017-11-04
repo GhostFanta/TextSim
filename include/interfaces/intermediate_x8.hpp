@@ -13,6 +13,10 @@ class intermediate_x8{
                           uint64_t &inputsize,
                           std::vector <uint32_t> &output,
                           uint64_t &intermediatesize) = 0;
+
+  uint32_t num_of_byte(const uint32_t val){
+    return ((__builtin_clz(val | 255) ^ 31) >> 3) + 1;
+  }
 };
 };
 
