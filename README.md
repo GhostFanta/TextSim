@@ -7,6 +7,7 @@ Publication:
 > High-performance Computational Framework for Phrase Relatedness
 
 Dependencies:
-CMPH Library
-FastPFor Library
-CMake>=3.5
+
++ CMPH Library
++ FastPFor Library
++ CMake>=3.5
