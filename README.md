@@ -4,6 +4,7 @@ This is a language model toolkit based on Text Relatedness based on Words and Ph
 
 Publication:
 
+> High-performance Computational Framework for Phrase Relatedness
 
 Dependencies:
 CMPH Library
