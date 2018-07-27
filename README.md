@@ -13,4 +13,4 @@ Dependencies:
 + CMake>=3.5
 
 Structure:
-![](https://ibb.co/h09d3o)
+![](https://image.ibb.co/m73Sw8/Screenshot_from_2018_07_27_10_37_45.png)
