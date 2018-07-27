@@ -11,3 +11,6 @@ Dependencies:
 + CMPH Library
 + FastPFor Library
 + CMake>=3.5
+
+Structure:
+![](https://ibb.co/h09d3o)
